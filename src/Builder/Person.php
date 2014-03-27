@@ -10,6 +10,7 @@ namespace DeskPRO\Builder;
  */
 class Person
 {
+
     protected $_dataArray = array();
 
     /**
@@ -118,7 +119,7 @@ class Person
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $this->_dataArray['email'] = $email;
         } else {
-            throw new \Exception("Bad Email: ". $email);
+            throw new \Exception("Bad Email: " . $email);
         }
 
         return $this;
@@ -150,7 +151,7 @@ class Person
     public function addContactData(ContactData $contactData)
     {
         @$this->_dataArray['contact_data'] = $contactData->getDataArray();
-        
+
         return $this;
     }
 
@@ -320,4 +321,5 @@ class Person
 
         return $this;
     }
+
 }

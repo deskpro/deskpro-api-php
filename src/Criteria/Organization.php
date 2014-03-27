@@ -10,7 +10,8 @@ namespace DeskPRO\Criteria;
  */
 class Organization extends \DeskPRO\Criteria\AbstractCriteria
 {
-	protected $_criteria = array();
+
+    protected $_criteria = array();
 
     /**
      * Adds an address to search criteria
@@ -26,7 +27,7 @@ class Organization extends \DeskPRO\Criteria\AbstractCriteria
 
         return $this;
     }
-    
+
     /**
      * Adds a Custom Field to the search criteria
      *
@@ -68,22 +69,22 @@ class Organization extends \DeskPRO\Criteria\AbstractCriteria
 
         return $this;
     }
-    
-	/**
-	 * Adds a name to search criteria
-	 * 
-	 * @param string $name The name to search
-	 * @return \DeskPRO\Criteria\Organization
-	 */
-	public function addName($name)
-	{
-		if (!empty($name)) {
-			$this->_criteria['name'][] = $name;
-		}
-		
-		return $this;
-	}
-    
+
+    /**
+     * Adds a name to search criteria
+     * 
+     * @param string $name The name to search
+     * @return \DeskPRO\Criteria\Organization
+     */
+    public function addName($name)
+    {
+        if (!empty($name)) {
+            $this->_criteria['name'][] = $name;
+        }
+
+        return $this;
+    }
+
     /**
      * Adds a phone number to the search criteria
      *
@@ -96,14 +97,15 @@ class Organization extends \DeskPRO\Criteria\AbstractCriteria
 
         return $this;
     }
-	
-	/**
-	 * Serializes the criteria to an Array
-	 * 
-	 * @return array serialized array of criteria
-	 */
-	public function toArray()
-	{
-		return $this->_criteria;
-	}
+
+    /**
+     * Serializes the criteria to an Array
+     * 
+     * @return array serialized array of criteria
+     */
+    public function toArray()
+    {
+        return $this->_criteria;
+    }
+
 }

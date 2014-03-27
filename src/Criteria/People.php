@@ -10,7 +10,8 @@ namespace DeskPRO\Criteria;
  */
 class People extends \DeskPRO\Criteria\AbstractCriteria
 {
-	protected $_criteria = array();
+
+    protected $_criteria = array();
 
     /**
      * Adds an address to search criteria
@@ -84,36 +85,36 @@ class People extends \DeskPRO\Criteria\AbstractCriteria
         $this->_criteria['date_created_start'] = $time;
     }
 
-	/**
-	 * Adds an Email to search criteria
-	 * 
-	 * @param string $email The email to search
-	 * @throws \Exception if $email is not a valid email
-	 * @return \DeskPRO\Criteria\People
-	 */
-	public function addEmail($email)
-	{
-		if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			$this->_criteria['email'][] = $email;
-		} else {
-			throw new \Exception("Bad Email: ". $email);
-		}
-		
-		return $this;
-	}
-	
-	/**
-	 * Adds an Email Domain to search criteria
-	 * 
-	 * @param string $emailDomain The email domain to search
-	 * @return \DeskPRO\Criteria\People
-	 */
-	public function addEmailDomain($emailDomain)
-	{
-		$this->_criteria['email_domain'][] = $emailDomain;
-		
-		return $this;
-	}
+    /**
+     * Adds an Email to search criteria
+     * 
+     * @param string $email The email to search
+     * @throws \Exception if $email is not a valid email
+     * @return \DeskPRO\Criteria\People
+     */
+    public function addEmail($email)
+    {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->_criteria['email'][] = $email;
+        } else {
+            throw new \Exception("Bad Email: " . $email);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Adds an Email Domain to search criteria
+     * 
+     * @param string $emailDomain The email domain to search
+     * @return \DeskPRO\Criteria\People
+     */
+    public function addEmailDomain($emailDomain)
+    {
+        $this->_criteria['email_domain'][] = $emailDomain;
+
+        return $this;
+    }
 
     /**
      * Adds a Custom Field to the search criteria
@@ -193,21 +194,21 @@ class People extends \DeskPRO\Criteria\AbstractCriteria
 
         return $this;
     }
-	
-	/**
-	 * Adds a name to search criteria
-	 * 
-	 * @param string $name The name to search
-	 * @return \DeskPRO\Criteria\People
-	 */
-	public function addName($name)
-	{
-		if (!empty($name)) {
-			$this->_criteria['name'][] = $name;
-		}
-		
-		return $this;
-	}
+
+    /**
+     * Adds a name to search criteria
+     * 
+     * @param string $name The name to search
+     * @return \DeskPRO\Criteria\People
+     */
+    public function addName($name)
+    {
+        if (!empty($name)) {
+            $this->_criteria['name'][] = $name;
+        }
+
+        return $this;
+    }
 
     /**
      * Adds an Organization to the search criteria
@@ -247,14 +248,15 @@ class People extends \DeskPRO\Criteria\AbstractCriteria
 
         return $this;
     }
-	
-	/**
-	 * Serializes the criteria to an Array
-	 * 
-	 * @return array serialized array of criteria
-	 */
-	public function toArray()
-	{
-		return $this->_criteria;
-	}
+
+    /**
+     * Serializes the criteria to an Array
+     * 
+     * @return array serialized array of criteria
+     */
+    public function toArray()
+    {
+        return $this->_criteria;
+    }
+
 }

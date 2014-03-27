@@ -11,16 +11,28 @@ namespace DeskPRO\Service;
  */
 class AbstractService
 {
-    /** @var \DpApi */
+
+    /** @var \DeskPRO\Api */
     protected $interface;
 
-    public function __construct(\DpApi $interface)
+    /**
+     * Default constructor
+     * 
+     * @param \DeskPRO\Api $interface
+     */
+    public function __construct(\DeskPRO\Api $interface)
     {
         $this->interface = $interface;
     }
 
+    /**
+     * Gets the last errors
+     * 
+     * @return array
+     */
     public function getErrors()
     {
         return $this->interface->getLastErrors();
     }
+
 }

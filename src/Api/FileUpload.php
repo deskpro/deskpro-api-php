@@ -12,78 +12,80 @@ namespace DeskPRO\Api;
  */
 class FileUpload
 {
-	/**
-	 * @var string
-	 */
-	protected $_filename;
 
-	/**
-	 * If null, filename is read for data.
-	 *
-	 * @var string|null
-	 */
-	protected $_data;
+    /**
+     * @var string
+     */
+    protected $_filename;
 
-	/**
-	 * MIME type (eg, text/plain).
-	 *
-	 * @var string|null
-	 */
-	protected $_type;
+    /**
+     * If null, filename is read for data.
+     *
+     * @var string|null
+     */
+    protected $_data;
 
-	/**
-	 * Constructor.
-	 *
-	 * @param string $filename
-	 * @param string|null $data
-	 * @param string|null $type
-	 */
-	public function __construct($filename, $data = null, $type = null)
-	{
-		$this->_filename = $filename;
-		$this->_data = $data;
-		$this->_type = $type;
-	}
+    /**
+     * MIME type (eg, text/plain).
+     *
+     * @var string|null
+     */
+    protected $_type;
 
-	/**
-	 * Gets the file name. Only returns the base name.
-	 *
-	 * @return string
-	 */
-	public function getFilename()
-	{
-		if (strpos($this->_filename, '/') !== false || strpos($this->_filename, '\\') !== false) {
-			return basename($this->_filename);
-		} else {
-			return $this->_filename;
-		}
-	}
+    /**
+     * Constructor.
+     *
+     * @param string $filename
+     * @param string|null $data
+     * @param string|null $type
+     */
+    public function __construct($filename, $data = null, $type = null)
+    {
+        $this->_filename = $filename;
+        $this->_data = $data;
+        $this->_type = $type;
+    }
 
-	/**
-	 * Gets the data from memory or the filesystem.
-	 *
-	 * @return string
-	 */
-	public function getData()
-	{
-		if ($this->_data === null) {
-			if (!file_exists($this->_filename) || !is_readable($this->_filename)) {
-				throw new DpApiException("Could not read $this->_filename to upload");
-			}
+    /**
+     * Gets the file name. Only returns the base name.
+     *
+     * @return string
+     */
+    public function getFilename()
+    {
+        if (strpos($this->_filename, '/') !== false || strpos($this->_filename, '\\') !== false) {
+            return basename($this->_filename);
+        } else {
+            return $this->_filename;
+        }
+    }
 
-			return file_get_contents($this->_filename);
-		} else {
-			return $this->_data;
-		}
-	}
+    /**
+     * Gets the data from memory or the filesystem.
+     *
+     * @return string
+     */
+    public function getData()
+    {
+        if ($this->_data === null) {
+            if (!file_exists($this->_filename) || !is_readable($this->_filename)) {
+                throw new DpApiException("Could not read $this->_filename to upload");
+            }
 
-	/**
-	 * Gets the MIME type.
-	 *
-	 * @return null|string
-	 */
-	public function getType()
-	{
-		return $this->_type;
-	}
+            return file_get_contents($this->_filename);
+        } else {
+            return $this->_data;
+        }
+    }
+
+    /**
+     * Gets the MIME type.
+     *
+     * @return null|string
+     */
+    public function getType()
+    {
+        return $this->_type;
+    }
+
 }

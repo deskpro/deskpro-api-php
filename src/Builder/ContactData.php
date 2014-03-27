@@ -10,6 +10,7 @@ namespace DeskPRO\Builder;
  */
 class ContactData
 {
+
     protected $_dataArray = array();
 
     /**
@@ -21,7 +22,7 @@ class ContactData
     {
         return $this->_dataArray;
     }
-    
+
     /**
      * Adds an address to a Person's contact details
      *
@@ -36,16 +37,16 @@ class ContactData
     public function addAddress($address, $city = null, $state = null, $zip = null, $country = null, $comment = null)
     {
         $this->_dataArray[] = array(
-            'type'      => 'address',
-            'comment'   => $comment,
-            'data'      => array(
-                'address'   => $address,
-                'city'      => $city,
-                'country'   => $country,
-                'state'     => $state,
-                'zip'       => $zip
+            'type' => 'address',
+            'comment' => $comment,
+            'data' => array(
+                'address' => $address,
+                'city' => $city,
+                'country' => $country,
+                'state' => $state,
+                'zip' => $zip
         ));
-        
+
         return $this;
     }
 
@@ -59,12 +60,12 @@ class ContactData
     public function addFacebook($profileUrl, $comment = null)
     {
         $this->_dataArray[] = array(
-            'type'      => 'facebook',
-            'comment'   => $comment,
-            'data'      => array(
-                'profile_url'   => $profileUrl
+            'type' => 'facebook',
+            'comment' => $comment,
+            'data' => array(
+                'profile_url' => $profileUrl
         ));
-        
+
         return $this;
     }
 
@@ -79,13 +80,13 @@ class ContactData
     public function addIm($service, $username, $comment = '')
     {
         $this->_dataArray[] = array(
-            'type'      => 'instant_message',
-            'comment'   => $comment,
-            'data'      => array(
-                'service'   => $service,
-                'username'  => $username
+            'type' => 'instant_message',
+            'comment' => $comment,
+            'data' => array(
+                'service' => $service,
+                'username' => $username
         ));
-        
+
         return $this;
     }
 
@@ -99,12 +100,12 @@ class ContactData
     public function addLinkedIn($profileUrl, $comment = null)
     {
         $this->_dataArray[] = array(
-            'type'      => 'linked_in',
-            'comment'   => $comment,
-            'data'      => array(
-                'profile_url'   => $profileUrl
+            'type' => 'linked_in',
+            'comment' => $comment,
+            'data' => array(
+                'profile_url' => $profileUrl
         ));
-        
+
         return $this;
     }
 
@@ -120,14 +121,14 @@ class ContactData
     public function addPhone($number, $type, $countryCode = null, $comment = null)
     {
         $this->_dataArray[] = array(
-            'type'      => 'phone',
-            'comment'   => $comment,
-            'data'      => array(
-                'number'                => $number,
-                'type'                  => $type,
-                'country_calling_code'  => $countryCode
+            'type' => 'phone',
+            'comment' => $comment,
+            'data' => array(
+                'number' => $number,
+                'type' => $type,
+                'country_calling_code' => $countryCode
         ));
-        
+
         return $this;
     }
 
@@ -141,12 +142,12 @@ class ContactData
     public function addSkype($username, $comment = null)
     {
         $this->_dataArray[] = array(
-            'type'      => 'skype',
-            'comment'   => $comment,
+            'type' => 'skype',
+            'comment' => $comment,
             array(
-                'username'  => $username
+                'username' => $username
         ));
-        
+
         return $this;
     }
 
@@ -160,12 +161,12 @@ class ContactData
     public function addTwitter($username, $comment = null)
     {
         $this->_dataArray[] = array(
-            'type'      => 'twitter',
-            'comment'   => $comment,
-            'data'      => array(
-                'username'  => $username
+            'type' => 'twitter',
+            'comment' => $comment,
+            'data' => array(
+                'username' => $username
         ));
-        
+
         return $this;
     }
 
@@ -179,12 +180,13 @@ class ContactData
     public function addWebsite($website, $comment = '')
     {
         $this->_dataArray[] = array(
-            'type'      => 'website', 
-            'comment'   => $comment,
-            'data'      => array(
-                'url'   => $website
+            'type' => 'website',
+            'comment' => $comment,
+            'data' => array(
+                'url' => $website
         ));
-        
+
         return $this;
     }
+
 }

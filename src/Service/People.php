@@ -11,6 +11,7 @@ namespace DeskPRO\Service;
  */
 class People extends AbstractService
 {
+
     /**
      * Deletes a Person by ID
      *
@@ -21,85 +22,84 @@ class People extends AbstractService
     {
         return $this->interface->deletePerson($id);
     }
-	
-	/**
-	 * Finds a Person by ID
-	 * 
-	 * @param int $id Person's ID to search
-	 * @return \DeskPRO\Person
-	 */
-	public function findById($id)
-	{
-		return $this->interface->getPerson($id);
-		
-		if ($payload) {
-			return $this->createFromArray($payload['person']);
-		}
-	}
-	
-	/**
-	 * Creates a Person object from a payload array
-	 * 
-	 * @param array $payload The payload/value array
-	 * @return \DeskPRO\Person
-	 * @throws \Exception if the $payload does not have a valid ID
-	 */
-	public function createFromArray(array $payload)
-	{
+
+    /**
+     * Finds a Person by ID
+     * 
+     * @param int $id Person's ID to search
+     * @return \DeskPRO\Person
+     */
+    public function findById($id)
+    {
+        return $this->interface->getPerson($id);
+
+        if ($payload) {
+            return $this->createFromArray($payload['person']);
+        }
+    }
+
+    /**
+     * Creates a Person object from a payload array
+     * 
+     * @param array $payload The payload/value array
+     * @return \DeskPRO\Person
+     * @throws \Exception if the $payload does not have a valid ID
+     */
+    public function createFromArray(array $payload)
+    {
         return $payload;
 //		if (!isset($payload['id'])) {
 //			throw new \Exception("Invalid Payload");
 //		}
-		
-		return new \DeskPRO\Person($payload);
-	}
-	
-	/**
-	 * Search for people matching criteria
-	 * 
-	 * @param \DeskPRO\Criteria $criteria
-	 * @return \DpApiResult Result Object
-	 */
-	public function find(\DeskPRO\Criteria $criteria)
-	{
+
+        return new \DeskPRO\Person($payload);
+    }
+
+    /**
+     * Search for people matching criteria
+     * 
+     * @param \DeskPRO\Criteria $criteria
+     * @return \DpApiResult Result Object
+     */
+    public function find(\DeskPRO\Criteria $criteria)
+    {
 //		$persons = array();
-		
-		return $this->interface->findPeople($criteria->toArray());
-		
-		if ($payload) {	
-			foreach ($payload['people'] as $people) {
-				$persons[] = $this->createFromArray($people);
-			}
-		}
-		
-		return $persons;
-	}
-	
-	/**
-	 * Creates and returns a search criteria
-	 * 
-	 * @return \DeskPRO\Criteria\People
-	 */
-	public function createCriteria() 
-	{
-		return new \DeskPRO\Criteria\People();
-	}
+
+        return $this->interface->findPeople($criteria->toArray());
+
+        if ($payload) {
+            foreach ($payload['people'] as $people) {
+                $persons[] = $this->createFromArray($people);
+            }
+        }
+
+        return $persons;
+    }
+
+    /**
+     * Creates and returns a search criteria
+     * 
+     * @return \DeskPRO\Criteria\People
+     */
+    public function createCriteria()
+    {
+        return new \DeskPRO\Criteria\People();
+    }
 
     public function createPerson()
     {
         return new \DeskPRO\Person(array());
     }
 
-
-	/**
-	 * Saves a Person
-	 * 
-	 * @param \DeskPRO\Builder\Person $person
-	 * @return \DpApiResult
+    /**
+     * Saves a Person
+     * 
+     * @param \DeskPRO\Builder\Person $person
+     * @return \DpApiResult
      * @throws \Exception if required parameters are missing
-	 */
+     */
     public function save(\DeskPRO\Builder\Person $person)
-	{
+    {
         if (!$person->getEmail() || !$person->getName('full')) {
             //throw new \Exception("Required fields 'email' and 'name' are missing");
         }
@@ -111,8 +111,7 @@ class People extends AbstractService
         }
 
         return $response;
-	}
-
+    }
 
     /**
      * Clears all active sessions for a person
@@ -145,7 +144,7 @@ class People extends AbstractService
      */
     public function addPersonSla($personId, $slaId)
     {
-        return $this->interface->addPersonSla($personId,$slaId);
+        return $this->interface->addPersonSla($personId, $slaId);
     }
 
     /**
@@ -264,8 +263,8 @@ class People extends AbstractService
     public function updatePersonEmail($personId, $emailId, $setPrimary = false, $comment = null)
     {
         return $this->interface->updatePersonEmail($personId, $emailId, array(
-            'set_primary'   => $setPrimary,
-            'comment'       => $comment
+                    'set_primary' => $setPrimary,
+                    'comment' => $comment
         ));
     }
 
@@ -390,12 +389,12 @@ class People extends AbstractService
     public function addAddress($personId, $address, $city = null, $state = null, $zip = null, $country = null, $comment = null)
     {
         return $this->interface->addPersonContactDetail($personId, 'address', array(
-            'address'   => $address,
-            'city'      => $city,
-            'country'   => $country,
-            'state'     => $state,
-            'zip'       => $zip
-        ), $comment);
+                    'address' => $address,
+                    'city' => $city,
+                    'country' => $country,
+                    'state' => $state,
+                    'zip' => $zip
+                        ), $comment);
     }
 
     /**
@@ -409,8 +408,8 @@ class People extends AbstractService
     public function addFacebook($personId, $profileUrl, $comment = null)
     {
         return $this->interface->addPersonContactDetail($personId, 'facebook', array(
-            'profile_url'   => $profileUrl
-        ), $comment);
+                    'profile_url' => $profileUrl
+                        ), $comment);
     }
 
     /**
@@ -425,9 +424,9 @@ class People extends AbstractService
     public function addIm($personId, $service, $username, $comment = '')
     {
         return $this->interface->addPersonContactDetail($personId, 'instant_message', array(
-            'service'   => $service,
-            'username'  => $username
-        ), $comment);
+                    'service' => $service,
+                    'username' => $username
+                        ), $comment);
     }
 
     /**
@@ -441,8 +440,8 @@ class People extends AbstractService
     public function addLinkedIn($personId, $profileUrl, $comment = null)
     {
         return $this->interface->addPersonContactDetail($personId, 'linked_in', array(
-            'profile_url'   => $profileUrl
-        ), $comment);
+                    'profile_url' => $profileUrl
+                        ), $comment);
     }
 
     /**
@@ -458,10 +457,10 @@ class People extends AbstractService
     public function addPhone($personId, $number, $type, $countryCode = null, $comment = null)
     {
         return $this->interface->addPersonContactDetail($personId, 'phone', array(
-            'number'                => $number,
-            'type'                  => $type,
-            'country_calling_code'  => $countryCode
-        ), $comment);
+                    'number' => $number,
+                    'type' => $type,
+                    'country_calling_code' => $countryCode
+                        ), $comment);
     }
 
     /**
@@ -475,8 +474,8 @@ class People extends AbstractService
     public function addSkype($personId, $username, $comment = null)
     {
         return $this->interface->addPersonContactDetail($personId, 'skype', array(
-            'username'  => $username
-        ), $comment);
+                    'username' => $username
+                        ), $comment);
     }
 
     /**
@@ -490,8 +489,8 @@ class People extends AbstractService
     public function addTwitter($personId, $username, $comment = null)
     {
         return $this->interface->addPersonContactDetail($personId, 'twitter', array(
-            'username'  => $username
-        ), $comment);
+                    'username' => $username
+                        ), $comment);
     }
 
     /**
@@ -505,8 +504,8 @@ class People extends AbstractService
     public function addWebsite($personId, $website, $comment = '')
     {
         return $this->interface->addPersonContactDetail($personId, 'website', array(
-            'url'   => $website
-        ), $comment);
+                    'url' => $website
+                        ), $comment);
     }
 
     /**
@@ -681,4 +680,5 @@ class People extends AbstractService
     {
         return new \DeskPRO\Builder\Person();
     }
+
 }

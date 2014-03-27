@@ -10,6 +10,7 @@ namespace DeskPRO\Builder;
  */
 class Organization
 {
+
     protected $_dataArray = array();
 
     /**
@@ -31,19 +32,19 @@ class Organization
     {
         return @$this->_dataArray['id'];
     }
-    
+
     /**
      * Sets the ID
      * @param int $id Organization ID
      * @return \DeskPRO\Builder\Organization
      */
-    public function setId($id) 
+    public function setId($id)
     {
         $this->_dataArray['id'] = $id;
-        
+
         return $this;
     }
-    
+
     /**
      * Sets the Organization's name
      * 
@@ -53,10 +54,10 @@ class Organization
     public function setName($name)
     {
         $this->_dataArray['name'] = $name;
-        
+
         return $this;
     }
-    
+
     /**
      * Sets the contact data
      * 
@@ -66,10 +67,10 @@ class Organization
     public function addContactData(\DeskPRO\Builder\ContactData $contactData)
     {
         $this->_dataArray['contact_data'] = $contactData->getDataArray();
-        
+
         return $this;
     }
-    
+
     /**
      * Sets a custom field
      * 
@@ -77,26 +78,26 @@ class Organization
      * @param mixed $value The custom field value
      * @return \DeskPRO\Builder\Organization
      */
-    public function addCustomField($key, $value) 
+    public function addCustomField($key, $value)
     {
         $this->_dataArray['field'][$key] = $value;
-        
+
         return $this;
     }
-    
+
     /**
      * Adds the Organization to an UserGroup
      * 
      * @param int $groupId The UserGroup ID to the add the user to
      * @return \DeskPRO\Builder\Organization
      */
-    public function addToGroup($groupId) 
+    public function addToGroup($groupId)
     {
         @$this->_dataArray['group_id'][] = $groupId;
-        
+
         return $this;
     }
-    
+
     /**
      * Adds a label
      * 
@@ -106,10 +107,10 @@ class Organization
     public function addLabel($label)
     {
         @$this->_dataArray['label'][] = $label;
-        
+
         return $this;
     }
-    
+
     /**
      * Sets the summary
      * 
@@ -119,7 +120,8 @@ class Organization
     public function setSummary($summary)
     {
         @$this->_dataArray['summary'] = $summary;
-        
+
         return $this;
     }
+
 }

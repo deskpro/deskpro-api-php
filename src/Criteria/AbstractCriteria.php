@@ -9,9 +9,10 @@ namespace DeskPRO\Criteria;
  */
 abstract class AbstractCriteria
 {
+
     protected $_criteria = array();
 
-	abstract public function toArray();
+    abstract public function toArray();
 
     /**
      * Specifies the Page number of the result set to fetch
@@ -25,7 +26,7 @@ abstract class AbstractCriteria
 
         return $this;
     }
-    
+
     /**
      * Specifies the order of the result set
      *
@@ -35,10 +36,10 @@ abstract class AbstractCriteria
     public function order($order)
     {
         $this->_criteria['order'] = $order;
-        
+
         return $this;
     }
-    
+
     /**
      * If provided, cached results from this result set are used. 
      * If it cannot be found or used, 
@@ -50,7 +51,8 @@ abstract class AbstractCriteria
     public function cacheId($cacheId)
     {
         $this->_criteria['cache_id'] = $cacheId;
-        
+
         return $this;
     }
+
 }

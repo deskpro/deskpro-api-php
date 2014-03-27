@@ -10,6 +10,7 @@ namespace DeskPRO\Builder;
  */
 class Task
 {
+
     protected $_dataArray = array();
 
     /**
@@ -44,33 +45,33 @@ class Task
 
         return $this;
     }
-    
+
     /**
      * Assigns the task to the specified agent
      * 
      * @param int $agentId Agent's ID to assign the task to
      * @return \DeskPRO\Builder\Task
      */
-    public function assignToAgent($agentId) 
+    public function assignToAgent($agentId)
     {
         $this->_dataArray['assigned_agent_id'] = $agentId;
-        
+
         return $this;
     }
-    
+
     /**
      * Assigns the task to the specified agent
      * 
      * @param int $teamId Agent Team's ID to assign the task to
      * @return \DeskPRO\Builder\Task
      */
-    public function assignToTeam($teamId) 
+    public function assignToTeam($teamId)
     {
         $this->_dataArray['assigned_agent_team_id'] = $teamId;
-        
+
         return $this;
     }
-    
+
     /**
      * Sets the task due date
      * 
@@ -80,10 +81,10 @@ class Task
     public function setDueDate($timestamp)
     {
         $this->_dataArray['date_due'] = $timestamp;
-        
+
         return $this;
     }
-    
+
     /**
      * Adds a label
      * 
@@ -93,10 +94,10 @@ class Task
     public function addLabel($label)
     {
         @$this->_dataArray['label'][] = $label;
-        
+
         return $this;
     }
-    
+
     /**
      * Associate the task to a ticket
      * 
@@ -106,33 +107,34 @@ class Task
     public function setTicket($ticketId)
     {
         $this->_dataArray['ticket_id'] = $ticketId;
-        
+
         return $this;
     }
-    
+
     /**
      * Sets the task title
      * 
      * @param string $title Title of the task to set
      * @return \DeskPRO\Builder\Task
      */
-    public function setTitle($title) 
+    public function setTitle($title)
     {
         $this->_dataArray['title'] = $title;
-        
+
         return $this;
     }
-    
+
     /**
      * Sets the visibility
      * 
      * @param boolean $visibility FALSE for private, TRUE for public.
      * @return \DeskPRO\Builder\Task
      */
-    public function setVisibility($visibility) 
+    public function setVisibility($visibility)
     {
         $this->_dataArray['visibility'] = ($visibility) ? 1 : 0;
-        
+
         return $this;
     }
+
 }
