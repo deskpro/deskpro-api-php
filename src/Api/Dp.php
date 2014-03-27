@@ -1,5 +1,5 @@
 <?php
-
+namespace DeskPRO\Api;
 /**
  * Copyright 2013 DeskPRO Ltd.
  *
@@ -34,7 +34,7 @@
  *
  * @version 0.1.0
  */
-class DpApi
+class Dp
 {
 	/**
 	 * URL to DeskPRO root (eg, http://example.com/deskpro)
@@ -587,7 +587,7 @@ class DpApi
 			$criteria['cache_id'] = $cache_id;
 		}
 
-		$results = $this->call('GET', '/organizations', $criteria);
+		return $this->call('GET', '/organizations', $criteria);
 		return $this->_getResponse($results);
 	}
 
@@ -600,7 +600,7 @@ class DpApi
 	 */
 	public function createOrganization(array $info)
 	{
-		$results = $this->call('POST', '/organizations', $info);
+		return $this->call('POST', '/organizations', $info);
 		return $this->_getResponse($results);
 	}
 
@@ -613,7 +613,7 @@ class DpApi
 	 */
 	public function getOrganization($id)
 	{
-		$results = $this->call('GET', '/organizations/' . intval($id));
+		return $this->call('GET', '/organizations/' . intval($id));
 		return $this->_getResponse($results);
 	}
 
@@ -627,7 +627,7 @@ class DpApi
 	 */
 	public function updateOrganization($id, array $info)
 	{
-		$results = $this->call('POST', '/organizations/' . intval($id), $info);
+		return $this->call('POST', '/organizations/' . intval($id), $info);
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -640,7 +640,7 @@ class DpApi
 	 */
 	public function deleteOrganization($id)
 	{
-		$results = $this->call('DELETE', '/organizations/' . intval($id));
+		return $this->call('DELETE', '/organizations/' . intval($id));
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -854,7 +854,7 @@ class DpApi
 	 */
 	public function getOrganizationPicture($id)
 	{
-		$results = $this->call('GET', '/organizations/' . intval($id) . '/picture');
+		return $this->call('GET', '/organizations/' . intval($id) . '/picture');
 		return $this->_getResponse($results);
 	}
 
@@ -879,7 +879,7 @@ class DpApi
 
 		$params = $this->_enforceFileUploadIsset($params, 'file');
 
-		$results = $this->call('POST', '/organizations/' . intval($id) . '/picture', $params);
+		return $this->call('POST', '/organizations/' . intval($id) . '/picture', $params);
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -892,7 +892,7 @@ class DpApi
 	 */
 	public function deleteOrganizationPicture($id)
 	{
-		$results = $this->call('DELETE', '/organizations/' . intval($id) . '/picture');
+		return $this->call('DELETE', '/organizations/' . intval($id) . '/picture');
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -905,7 +905,7 @@ class DpApi
 	 */
 	public function getOrganizationSlas($id)
 	{
-		$results = $this->call('GET', '/organizations/' . intval($id) . '/slas');
+		return $this->call('GET', '/organizations/' . intval($id) . '/slas');
 		return $this->_getResponse($results);
 	}
 
@@ -920,7 +920,7 @@ class DpApi
 	public function addOrganizationSla($id, $sla_id)
 	{
 		$params = array('sla_id' => $sla_id);
-		$results = $this->call('POST', '/organizations/' . intval($id) . '/slas', $params);
+		return $this->call('POST', '/organizations/' . intval($id) . '/slas', $params);
 		return $this->_getResponse($results);
 	}
 
@@ -934,7 +934,7 @@ class DpApi
 	 */
 	public function getOrganizationSla($org_id, $sla_id)
 	{
-		$results = $this->call('GET', '/organizations/' . intval($org_id) . '/slas/' . intval($sla_id));
+		return $this->call('GET', '/organizations/' . intval($org_id) . '/slas/' . intval($sla_id));
 		return $this->_getExistsResponse($results);
 	}
 
@@ -948,7 +948,7 @@ class DpApi
 	 */
 	public function deleteOrganizationSla($org_id, $sla_id)
 	{
-		$results = $this->call('DELETE', '/organizations/' . intval($org_id) . '/emails/' . intval($sla_id));
+		return $this->call('DELETE', '/organizations/' . intval($org_id) . '/slas/' . intval($sla_id));
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -961,7 +961,7 @@ class DpApi
 	 */
 	public function getOrganizationContactDetails($id)
 	{
-		$results = $this->call('GET', '/organizations/' . intval($id) . '/contact-details');
+		return $this->call('GET', '/organizations/' . intval($id) . '/contact-details');
 		return $this->_getResponse($results);
 	}
 
@@ -996,7 +996,7 @@ class DpApi
 	 */
 	public function getOrganizationContactDetail($organization_id, $contact_id)
 	{
-		$results = $this->call('GET', '/organizations/' . intval($organization_id) . '/contact-details/' . intval($contact_id));
+		return $this->call('GET', '/organizations/' . intval($organization_id) . '/contact-details/' . intval($contact_id));
 		return $this->_getExistsResponse($results);
 	}
 
@@ -1010,7 +1010,7 @@ class DpApi
 	 */
 	public function removeOrganizationContactDetail($organization_id, $contact_id)
 	{
-		$results = $this->call('DELETE', '/organizations/' . intval($organization_id) . '/contact-details/' . intval($contact_id));
+		return $this->call('DELETE', '/organizations/' . intval($organization_id) . '/contact-details/' . intval($contact_id));
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -1023,7 +1023,7 @@ class DpApi
 	 */
 	public function getOrganizationGroups($id)
 	{
-		$results = $this->call('GET', '/organizations/' . intval($id) . '/groups');
+		return $this->call('GET', '/organizations/' . intval($id) . '/groups');
 		return $this->_getResponse($results);
 	}
 
@@ -1037,7 +1037,7 @@ class DpApi
 	 */
 	public function addOrganizationGroup($organization_id, $group_id)
 	{
-		$results = $this->call('POST', '/organizations/' . intval($organization_id) . '/groups', array('id' => $group_id));
+		return $this->call('POST', '/organizations/' . intval($organization_id) . '/groups', array('id' => $group_id));
 		return $this->_getResponse($results);
 	}
 
@@ -1051,7 +1051,7 @@ class DpApi
 	 */
 	public function getOrganizationGroup($organization_id, $group_id)
 	{
-		$results = $this->call('GET', '/organizations/' . intval($organization_id) . '/groups/' . intval($group_id));
+		return $this->call('GET', '/organizations/' . intval($organization_id) . '/groups/' . intval($group_id));
 		return $this->_getExistsResponse($results);
 	}
 
@@ -1065,7 +1065,7 @@ class DpApi
 	 */
 	public function removeOrganizationGroup($organization_id, $group_id)
 	{
-		$results = $this->call('DELETE', '/organizations/' . intval($organization_id) . '/groups/' . intval($group_id));
+		return $this->call('DELETE', '/organizations/' . intval($organization_id) . '/groups/' . intval($group_id));
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -1078,7 +1078,7 @@ class DpApi
 	 */
 	public function getOrganizationLabels($id)
 	{
-		$results = $this->call('GET', '/organizations/' . intval($id) . '/labels');
+		return $this->call('GET', '/organizations/' . intval($id) . '/labels');
 		return $this->_getResponse($results);
 	}
 
@@ -1092,7 +1092,7 @@ class DpApi
 	 */
 	public function addOrganizationLabel($id, $label)
 	{
-		$results = $this->call('POST', '/organizations/' . intval($id) . '/labels', array('label' => $label));
+		return $this->call('POST', '/organizations/' . intval($id) . '/labels', array('label' => $label));
 		return $this->_getResponse($results);
 	}
 
@@ -1106,7 +1106,7 @@ class DpApi
 	 */
 	public function getOrganizationLabel($id, $label)
 	{
-		$results = $this->call('GET', '/organizations/' . intval($id) . '/labels/' . $label);
+		return $this->call('GET', '/organizations/' . intval($id) . '/labels/' . $label);
 		return $this->_getExistsResponse($results);
 	}
 
@@ -1120,7 +1120,7 @@ class DpApi
 	 */
 	public function removeOrganizationLabel($id, $label)
 	{
-		$results = $this->call('DELETE', '/organizations/' . intval($id) . '/labels/' . $label);
+		return $this->call('DELETE', '/organizations/' . intval($id) . '/labels/' . $label);
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -1131,7 +1131,7 @@ class DpApi
 	 */
 	public function getOrganizationsFields()
 	{
-		$results = $this->call('GET', '/organizations/fields');
+		return $this->call('GET', '/organizations/fields');
 		return $this->_getResponse($results);
 	}
 
@@ -1142,7 +1142,7 @@ class DpApi
 	 */
 	public function getOrganizationsGroups()
 	{
-		$results = $this->call('GET', '/organizations/groups');
+		return $this->call('GET', '/organizations/groups');
 		return $this->_getResponse($results);
 	}
 
@@ -1168,7 +1168,7 @@ class DpApi
 			$criteria['cache_id'] = $cache_id;
 		}
 
-		$results = $this->call('GET', '/people', $criteria);
+		return $this->call('GET', '/people', $criteria);
 		return $this->_getResponse($results);
 	}
 
@@ -1181,7 +1181,7 @@ class DpApi
 	 */
 	public function createPerson(array $info)
 	{
-		$results = $this->call('POST', '/people', $info);
+		return $this->call('POST', '/people', $info);
 		return $this->_getResponse($results);
 	}
 
@@ -1194,7 +1194,7 @@ class DpApi
 	 */
 	public function getPerson($id)
 	{
-		$results = $this->call('GET', '/people/' . intval($id));
+		return $this->call('GET', '/people/' . intval($id));
 		return $this->_getResponse($results);
 	}
 
@@ -1208,7 +1208,7 @@ class DpApi
 	 */
 	public function updatePerson($id, array $info)
 	{
-		$results = $this->call('POST', '/people/' . intval($id), $info);
+		return $this->call('POST', '/people/' . intval($id), $info);
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -1221,7 +1221,7 @@ class DpApi
 	 */
 	public function deletePerson($id)
 	{
-		$results = $this->call('DELETE', '/people/' . intval($id));
+		return $this->call('DELETE', '/people/' . intval($id));
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -1280,7 +1280,7 @@ class DpApi
 			$params['cache'] = $cache_id;
 		}
 
-		$results = $this->call('GET', '/people/' . intval($id) . '/tickets', $params);
+		return $this->call('GET', '/people/' . intval($id) . '/tickets', $params);
 		return $this->_getResponse($results);
 	}
 
@@ -1305,7 +1305,7 @@ class DpApi
 			$params['cache'] = $cache_id;
 		}
 
-		$results = $this->call('GET', '/people/' . intval($id) . '/chats', $params);
+		return $this->call('GET', '/people/' . intval($id) . '/chats', $params);
 		return $this->_getResponse($results);
 	}
 
@@ -1322,7 +1322,7 @@ class DpApi
 		$params = array();
 		$params['page'] = $page;
 
-		$results = $this->call('GET', '/people/' . intval($id) . '/activity-stream', $params);
+		return $this->call('GET', '/people/' . intval($id) . '/activity-stream', $params);
 		return $this->_getResponse($results);
 	}
 
@@ -1335,7 +1335,7 @@ class DpApi
 	 */
 	public function getPersonNotes($id)
 	{
-		$results = $this->call('GET', '/people/' . intval($id) . '/notes');
+		return $this->call('GET', '/people/' . intval($id) . '/notes');
 		return $this->_getResponse($results);
 	}
 
@@ -1349,7 +1349,7 @@ class DpApi
 	 */
 	public function createPersonNote($id, $note)
 	{
-		$results = $this->call('POST', '/people/' . intval($id) . '/notes', array('note' => $note));
+		return $this->call('POST', '/people/' . intval($id) . '/notes', array('note' => $note));
 		return $this->_getResponse($results);
 	}
 
@@ -1366,7 +1366,7 @@ class DpApi
 		$params = array();
 		$params['page'] = $page;
 
-		$results = $this->call('GET', '/people/' . intval($id) . '/billing-charges', $params);
+		return $this->call('GET', '/people/' . intval($id) . '/billing-charges', $params);
 		return $this->_getResponse($results);
 	}
 
@@ -1379,7 +1379,7 @@ class DpApi
 	 */
 	public function getPersonPicture($id)
 	{
-		$results = $this->call('GET', '/people/' . intval($id) . '/picture');
+		return $this->call('GET', '/people/' . intval($id) . '/picture');
 		return $this->_getResponse($results);
 	}
 
@@ -1404,7 +1404,7 @@ class DpApi
 
 		$params = $this->_enforceFileUploadIsset($params, 'file');
 
-		$results = $this->call('POST', '/people/' . intval($id) . '/picture', $params);
+		return $this->call('POST', '/people/' . intval($id) . '/picture', $params);
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -1417,7 +1417,7 @@ class DpApi
 	 */
 	public function deletePersonPicture($id)
 	{
-		$results = $this->call('DELETE', '/people/' . intval($id) . '/picture');
+		return $this->call('DELETE', '/people/' . intval($id) . '/picture');
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -1430,7 +1430,7 @@ class DpApi
 	 */
 	public function getPersonSlas($id)
 	{
-		$results = $this->call('GET', '/people/' . intval($id) . '/slas');
+		return $this->call('GET', '/people/' . intval($id) . '/slas');
 		return $this->_getResponse($results);
 	}
 
@@ -1445,7 +1445,7 @@ class DpApi
 	public function addPersonSla($id, $sla_id)
 	{
 		$params = array('sla_id' => $sla_id);
-		$results = $this->call('POST', '/people/' . intval($id) . '/slas', $params);
+		return $this->call('POST', '/people/' . intval($id) . '/slas', $params);
 		return $this->_getResponse($results);
 	}
 
@@ -1459,7 +1459,7 @@ class DpApi
 	 */
 	public function getPersonSla($person_id, $sla_id)
 	{
-		$results = $this->call('GET', '/people/' . intval($person_id) . '/slas/' . intval($sla_id));
+		return $this->call('GET', '/people/' . intval($person_id) . '/slas/' . intval($sla_id));
 		return $this->_getExistsResponse($results);
 	}
 
@@ -1473,7 +1473,7 @@ class DpApi
 	 */
 	public function deletePersonSla($person_id, $sla_id)
 	{
-		$results = $this->call('DELETE', '/people/' . intval($person_id) . '/emails/' . intval($sla_id));
+		return $this->call('DELETE', '/people/' . intval($person_id) . '/emails/' . intval($sla_id));
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -1486,7 +1486,7 @@ class DpApi
 	 */
 	public function getPersonEmails($id)
 	{
-		$results = $this->call('GET', '/people/' . intval($id) . '/emails');
+		return $this->call('GET', '/people/' . intval($id) . '/emails');
 		return $this->_getResponse($results);
 	}
 
@@ -1502,7 +1502,7 @@ class DpApi
 	public function addPersonEmail($id, $email, array $params = array())
 	{
 		$params['email'] = $email;
-		$results = $this->call('POST', '/people/' . intval($id) . '/emails', $params);
+		return $this->call('POST', '/people/' . intval($id) . '/emails', $params);
 		return $this->_getResponse($results);
 	}
 
@@ -1516,7 +1516,7 @@ class DpApi
 	 */
 	public function getPersonEmail($person_id, $email_id)
 	{
-		$results = $this->call('GET', '/people/' . intval($person_id) . '/emails/' . intval($email_id));
+		return $this->call('GET', '/people/' . intval($person_id) . '/emails/' . intval($email_id));
 		return $this->_getResponse($results);
 	}
 
@@ -1531,7 +1531,7 @@ class DpApi
 	 */
 	public function updatePersonEmail($person_id, $email_id, array $params)
 	{
-		$results = $this->call('POST', '/people/' . intval($person_id) . '/emails/' . intval($email_id), $params);
+		return $this->call('POST', '/people/' . intval($person_id) . '/emails/' . intval($email_id), $params);
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -1545,7 +1545,7 @@ class DpApi
 	 */
 	public function deletePersonEmail($person_id, $email_id)
 	{
-		$results = $this->call('DELETE', '/people/' . intval($person_id) . '/emails/' . intval($email_id));
+		return $this->call('DELETE', '/people/' . intval($person_id) . '/emails/' . intval($email_id));
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -1558,7 +1558,7 @@ class DpApi
 	 */
 	public function getPersonContactDetails($id)
 	{
-		$results = $this->call('GET', '/people/' . intval($id) . '/contact-details');
+		return $this->call('GET', '/people/' . intval($id) . '/contact-details');
 		return $this->_getResponse($results);
 	}
 
@@ -1579,7 +1579,7 @@ class DpApi
 			'data' => $data,
 			'comment' => $comment
 		);
-		$results = $this->call('POST', '/people/' . intval($id) . '/contact-details', $params);
+		return $this->call('POST', '/people/' . intval($id) . '/contact-details', $params);
 		return $this->_getResponse($results);
 	}
 
@@ -1593,7 +1593,7 @@ class DpApi
 	 */
 	public function getPersonContactDetail($person_id, $contact_id)
 	{
-		$results = $this->call('GET', '/people/' . intval($person_id) . '/contact-details/' . intval($contact_id));
+		return $this->call('GET', '/people/' . intval($person_id) . '/contact-details/' . intval($contact_id));
 		return $this->_getExistsResponse($results);
 	}
 
@@ -1607,7 +1607,7 @@ class DpApi
 	 */
 	public function removePersonContactDetail($person_id, $contact_id)
 	{
-		$results = $this->call('DELETE', '/people/' . intval($person_id) . '/contact-details/' . intval($contact_id));
+		return $this->call('DELETE', '/people/' . intval($person_id) . '/contact-details/' . intval($contact_id));
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -1620,7 +1620,7 @@ class DpApi
 	 */
 	public function getPersonGroups($id)
 	{
-		$results = $this->call('GET', '/people/' . intval($id) . '/groups');
+		return $this->call('GET', '/people/' . intval($id) . '/groups');
 		return $this->_getResponse($results);
 	}
 
@@ -1634,7 +1634,7 @@ class DpApi
 	 */
 	public function addPersonGroup($person_id, $group_id)
 	{
-		$results = $this->call('POST', '/people/' . intval($person_id) . '/groups', array('id' => $group_id));
+		return $this->call('POST', '/people/' . intval($person_id) . '/groups', array('id' => $group_id));
 		return $this->_getResponse($results);
 	}
 
@@ -1648,7 +1648,7 @@ class DpApi
 	 */
 	public function getPersonGroup($person_id, $group_id)
 	{
-		$results = $this->call('GET', '/people/' . intval($person_id) . '/groups/' . intval($group_id));
+		return $this->call('GET', '/people/' . intval($person_id) . '/groups/' . intval($group_id));
 		return $this->_getExistsResponse($results);
 	}
 
@@ -1662,7 +1662,7 @@ class DpApi
 	 */
 	public function removePersonGroup($person_id, $group_id)
 	{
-		$results = $this->call('DELETE', '/people/' . intval($person_id) . '/groups/' . intval($group_id));
+		return $this->call('DELETE', '/people/' . intval($person_id) . '/groups/' . intval($group_id));
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -1675,7 +1675,7 @@ class DpApi
 	 */
 	public function getPersonLabels($id)
 	{
-		$results = $this->call('GET', '/people/' . intval($id) . '/labels');
+		return $this->call('GET', '/people/' . intval($id) . '/labels');
 		return $this->_getResponse($results);
 	}
 
@@ -1689,7 +1689,7 @@ class DpApi
 	 */
 	public function addPersonLabel($id, $label)
 	{
-		$results = $this->call('POST', '/people/' . intval($id) . '/labels', array('label' => $label));
+		return $this->call('POST', '/people/' . intval($id) . '/labels', array('label' => $label));
 		return $this->_getResponse($results);
 	}
 
@@ -1703,7 +1703,7 @@ class DpApi
 	 */
 	public function getPersonLabel($id, $label)
 	{
-		$results = $this->call('GET', '/people/' . intval($id) . '/labels/' . $label);
+		return $this->call('GET', '/people/' . intval($id) . '/labels/' . $label);
 		return $this->_getExistsResponse($results);
 	}
 
@@ -1717,7 +1717,7 @@ class DpApi
 	 */
 	public function removePersonLabel($id, $label)
 	{
-		$results = $this->call('DELETE', '/people/' . intval($id) . '/labels/' . $label);
+		return $this->call('DELETE', '/people/' . intval($id) . '/labels/' . $label);
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -1728,7 +1728,7 @@ class DpApi
 	 */
 	public function getPeopleFields()
 	{
-		$results = $this->call('GET', '/people/fields');
+		return $this->call('GET', '/people/fields');
 		return $this->_getResponse($results);
 	}
 
@@ -1739,7 +1739,7 @@ class DpApi
 	 */
 	public function getPeopleGroups()
 	{
-		$results = $this->call('GET', '/people/groups');
+		return $this->call('GET', '/people/groups');
 		return $this->_getResponse($results);
 	}
 
@@ -3378,7 +3378,7 @@ class DpApi
 			$criteria['cache_id'] = $cache_id;
 		}
 
-		$results = $this->call('GET', '/kb', $criteria);
+		return $this->call('GET', '/kb', $criteria);
 		return $this->_getResponse($results);
 	}
 
@@ -3393,7 +3393,7 @@ class DpApi
 	{
 		$info = $this->_enforceFileUploadIsset($info, 'attach', true);
 
-		$results = $this->call('POST', '/kb', $info);
+		return $this->call('POST', '/kb', $info);
 		return $this->_getResponse($results);
 	}
 
@@ -3406,7 +3406,7 @@ class DpApi
 	 */
 	public function getArticle($id)
 	{
-		$results = $this->call('GET', '/kb/' . intval($id));
+		return $this->call('GET', '/kb/' . intval($id));
 		return $this->_getResponse($results);
 	}
 
@@ -3422,7 +3422,7 @@ class DpApi
 	{
 		$info = $this->_enforceFileUploadIsset($info, 'attach', true);
 
-		$results = $this->call('POST', '/kb/' . intval($id), $info);
+		return $this->call('POST', '/kb/' . intval($id), $info);
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -3435,7 +3435,7 @@ class DpApi
 	 */
 	public function deleteArticle($id)
 	{
-		$results = $this->call('DELETE', '/kb/' . intval($id));
+		return $this->call('DELETE', '/kb/' . intval($id));
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -3448,7 +3448,7 @@ class DpApi
 	 */
 	public function getArticleComments($id)
 	{
-		$results = $this->call('GET', '/kb/' . intval($id) . '/comments');
+		return $this->call('GET', '/kb/' . intval($id) . '/comments');
 		return $this->_getResponse($results);
 	}
 
@@ -3462,7 +3462,7 @@ class DpApi
 	 */
 	public function addArticleComment($id, array $params)
 	{
-		$results = $this->call('POST', '/kb/' . intval($id) . '/comments', $params);
+		return $this->call('POST', '/kb/' . intval($id) . '/comments', $params);
 		return $this->_getResponse($results);
 	}
 
@@ -3476,7 +3476,7 @@ class DpApi
 	 */
 	public function getArticleComment($article_id, $comment_id)
 	{
-		$results = $this->call('GET', '/kb/' . intval($article_id) . '/comments/' . intval($comment_id));
+		return $this->call('GET', '/kb/' . intval($article_id) . '/comments/' . intval($comment_id));
 		return $this->_getResponse($results);
 	}
 
@@ -3491,7 +3491,7 @@ class DpApi
 	 */
 	public function updateArticleComment($article_id, $comment_id, array $params)
 	{
-		$results = $this->call('POST', '/kb/' . intval($article_id) . '/comments/' . intval($comment_id), $params);
+		return $this->call('POST', '/kb/' . intval($article_id) . '/comments/' . intval($comment_id), $params);
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -3505,7 +3505,7 @@ class DpApi
 	 */
 	public function deleteArticleComment($article_id, $comment_id)
 	{
-		$results = $this->call('DELETE', '/kb/' . intval($article_id) . '/comments/' . intval($comment_id));
+		return $this->call('DELETE', '/kb/' . intval($article_id) . '/comments/' . intval($comment_id));
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -3518,7 +3518,7 @@ class DpApi
 	 */
 	public function getArticleVotes($id)
 	{
-		$results = $this->call('GET', '/kb/' . intval($id) . '/votes');
+		return $this->call('GET', '/kb/' . intval($id) . '/votes');
 		return $this->_getResponse($results);
 	}
 
@@ -3531,7 +3531,7 @@ class DpApi
 	 */
 	public function getArticleAttachments($id)
 	{
-		$results = $this->call('GET', '/kb/' . intval($id) . '/attachments');
+		return $this->call('GET', '/kb/' . intval($id) . '/attachments');
 		return $this->_getResponse($results);
 	}
 
@@ -3556,7 +3556,7 @@ class DpApi
 
 		$params = $this->_enforceFileUploadIsset($params, 'attach');
 
-		$results = $this->call('POST', '/kb/' . intval($id) . '/attachments', $params);
+		return $this->call('POST', '/kb/' . intval($id) . '/attachments', $params);
 		return $this->_getResponse($results);
 	}
 
@@ -3570,7 +3570,7 @@ class DpApi
 	 */
 	public function getArticleAttachment($id, $attachment_id)
 	{
-		$results = $this->call('GET', '/kb/' . intval($id) . '/attachments/' . intval($attachment_id));
+		return $this->call('GET', '/kb/' . intval($id) . '/attachments/' . intval($attachment_id));
 		return $this->_getExistsResponse($results);
 	}
 
@@ -3584,7 +3584,7 @@ class DpApi
 	 */
 	public function removeArticleAttachment($id, $attachment_id)
 	{
-		$results = $this->call('DELETE', '/kb/' . intval($id) . '/attachments/' . intval($attachment_id));
+		return $this->call('DELETE', '/kb/' . intval($id) . '/attachments/' . intval($attachment_id));
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -3597,7 +3597,7 @@ class DpApi
 	 */
 	public function getArticleLabels($id)
 	{
-		$results = $this->call('GET', '/kb/' . intval($id) . '/labels');
+		return $this->call('GET', '/kb/' . intval($id) . '/labels');
 		return $this->_getResponse($results);
 	}
 
@@ -3611,7 +3611,7 @@ class DpApi
 	 */
 	public function addArticleLabel($id, $label)
 	{
-		$results = $this->call('POST', '/kb/' . intval($id) . '/labels', array('label' => $label));
+		return $this->call('POST', '/kb/' . intval($id) . '/labels', array('label' => $label));
 		return $this->_getResponse($results);
 	}
 
@@ -3625,7 +3625,7 @@ class DpApi
 	 */
 	public function getArticleLabel($id, $label)
 	{
-		$results = $this->call('GET', '/kb/' . intval($id) . '/labels/' . $label);
+		return $this->call('GET', '/kb/' . intval($id) . '/labels/' . $label);
 		return $this->_getExistsResponse($results);
 	}
 
@@ -3639,7 +3639,7 @@ class DpApi
 	 */
 	public function removeArticleLabel($id, $label)
 	{
-		$results = $this->call('DELETE', '/kb/' . intval($id) . '/labels/' . $label);
+		return $this->call('DELETE', '/kb/' . intval($id) . '/labels/' . $label);
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -3650,7 +3650,7 @@ class DpApi
 	 */
 	public function getArticleValidatingComments()
 	{
-		$results = $this->call('GET', '/kb/validating-comments');
+		return $this->call('GET', '/kb/validating-comments');
 		return $this->_getResponse($results);
 	}
 
@@ -3661,7 +3661,7 @@ class DpApi
 	 */
 	public function getArticlesCategories()
 	{
-		$results = $this->call('GET', '/kb/categories');
+		return $this->call('GET', '/kb/categories');
 		return $this->_getResponse($results);
 	}
 
@@ -3674,7 +3674,7 @@ class DpApi
 	 */
 	public function createArticleCategory(array $params)
 	{
-		$results = $this->call('POST', '/kb/categories', $params);
+		return $this->call('POST', '/kb/categories', $params);
 		return $this->_getResponse($results);
 	}
 
@@ -3687,7 +3687,7 @@ class DpApi
 	 */
 	public function getArticleCategory($id)
 	{
-		$results = $this->call('GET', '/kb/categories/' . intval($id));
+		return $this->call('GET', '/kb/categories/' . intval($id));
 		return $this->_getResponse($results);
 	}
 
@@ -4191,7 +4191,7 @@ class DpApi
 			$criteria['cache_id'] = $cache_id;
 		}
 
-		$results = $this->call('GET', '/tasks', $criteria);
+		return $this->call('GET', '/tasks', $criteria);
 		return $this->_getResponse($results);
 	}
 
@@ -4204,7 +4204,7 @@ class DpApi
 	 */
 	public function createTask(array $info)
 	{
-		$results = $this->call('POST', '/tasks', $info);
+		return $this->call('POST', '/tasks', $info);
 		return $this->_getResponse($results);
 	}
 
@@ -4217,7 +4217,7 @@ class DpApi
 	 */
 	public function getTask($id)
 	{
-		$results = $this->call('GET', '/tasks/' . intval($id));
+		return $this->call('GET', '/tasks/' . intval($id));
 		return $this->_getResponse($results);
 	}
 
@@ -4231,7 +4231,7 @@ class DpApi
 	 */
 	public function updateTask($id, array $info)
 	{
-		$results = $this->call('POST', '/tasks/' . intval($id), $info);
+		return $this->call('POST', '/tasks/' . intval($id), $info);
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -4244,7 +4244,7 @@ class DpApi
 	 */
 	public function deleteTask($id)
 	{
-		$results = $this->call('DELETE', '/task/' . intval($id));
+		return $this->call('DELETE', '/task/' . intval($id));
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -4257,7 +4257,7 @@ class DpApi
 	 */
 	public function getTaskAssociations($id)
 	{
-		$results = $this->call('GET', '/tasks/' . intval($id) . '/associations');
+		return $this->call('GET', '/tasks/' . intval($id) . '/associations');
 		return $this->_getResponse($results);
 	}
 
@@ -4274,7 +4274,7 @@ class DpApi
 		$params = array(
 			'ticket_id' => $ticket_id
 		);
-		$results = $this->call('POST', '/tasks/' . intval($id) . '/associations', $params);
+		return $this->call('POST', '/tasks/' . intval($id) . '/associations', $params);
 		return $this->_getResponse($results);
 	}
 
@@ -4288,7 +4288,7 @@ class DpApi
 	 */
 	public function getTaskAssociation($task_id, $association_id)
 	{
-		$results = $this->call('GET', '/tasks/' . intval($task_id) . '/associations/' . intval($association_id));
+		return $this->call('GET', '/tasks/' . intval($task_id) . '/associations/' . intval($association_id));
 		return $this->_getExistsResponse($results);
 	}
 
@@ -4302,7 +4302,7 @@ class DpApi
 	 */
 	public function deleteTaskAssociation($task_id, $association_id)
 	{
-		$results = $this->call('DELETE', '/tasks/' . intval($task_id) . '/associations/' . intval($association_id));
+		return $this->call('DELETE', '/tasks/' . intval($task_id) . '/associations/' . intval($association_id));
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -4315,7 +4315,7 @@ class DpApi
 	 */
 	public function getTaskComments($id)
 	{
-		$results = $this->call('GET', '/tasks/' . intval($id) . '/comments');
+		return $this->call('GET', '/tasks/' . intval($id) . '/comments');
 		return $this->_getResponse($results);
 	}
 
@@ -4332,7 +4332,7 @@ class DpApi
 		$params = array(
 			'comment' => $comment
 		);
-		$results = $this->call('POST', '/tasks/' . intval($id) . '/comments', $params);
+		return $this->call('POST', '/tasks/' . intval($id) . '/comments', $params);
 		return $this->_getResponse($results);
 	}
 
@@ -4346,7 +4346,7 @@ class DpApi
 	 */
 	public function getTaskComment($task_id, $comment_id)
 	{
-		$results = $this->call('GET', '/tasks/' . intval($task_id) . '/comments/' . intval($comment_id));
+		return $this->call('GET', '/tasks/' . intval($task_id) . '/comments/' . intval($comment_id));
 		return $this->_getExistsResponse($results);
 	}
 
@@ -4360,7 +4360,7 @@ class DpApi
 	 */
 	public function deleteTaskComment($task_id, $comment_id)
 	{
-		$results = $this->call('DELETE', '/tasks/' . intval($task_id) . '/comments/' . intval($comment_id));
+		return $this->call('DELETE', '/tasks/' . intval($task_id) . '/comments/' . intval($comment_id));
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -4373,7 +4373,7 @@ class DpApi
 	 */
 	public function getTaskLabels($id)
 	{
-		$results = $this->call('GET', '/tasks/' . intval($id) . '/labels');
+		return $this->call('GET', '/tasks/' . intval($id) . '/labels');
 		return $this->_getResponse($results);
 	}
 
@@ -4387,7 +4387,7 @@ class DpApi
 	 */
 	public function addTaskLabel($id, $label)
 	{
-		$results = $this->call('POST', '/tasks/' . intval($id) . '/labels', array('label' => $label));
+		return $this->call('POST', '/tasks/' . intval($id) . '/labels', array('label' => $label));
 		return $this->_getResponse($results);
 	}
 
@@ -4401,7 +4401,7 @@ class DpApi
 	 */
 	public function getTaskLabel($id, $label)
 	{
-		$results = $this->call('GET', '/tasks/' . intval($id) . '/labels/' . $label);
+		return $this->call('GET', '/tasks/' . intval($id) . '/labels/' . $label);
 		return $this->_getExistsResponse($results);
 	}
 
@@ -4415,7 +4415,7 @@ class DpApi
 	 */
 	public function removeTaskLabel($id, $label)
 	{
-		$results = $this->call('DELETE', '/tasks/' . intval($id) . '/labels/' . $label);
+		return $this->call('DELETE', '/tasks/' . intval($id) . '/labels/' . $label);
 		return $this->_getSuccessResponse($results);
 	}
 
@@ -4643,247 +4643,3 @@ class DpApi
 	}
 }
 // END PRIMARY API CLASS
-
-
-
-
-/**
- * Represents the HTTP call results from a DeskPRO API call.
- */
-class DpApiResult
-{
-	/**
-	 * HTTP response code
-	 *
-	 * @var int
-	 */
-	protected $_code = 200;
-
-	/**
-	 * List of headers. As headers may be repeated, in form array(array([name], [value]),...).
-	 *
-	 * @var array
-	 */
-	protected $_headers = array();
-
-	/**
-	 * Result body
-	 *
-	 * @var string
-	 */
-	protected $_body;
-
-	/**
-	 * JSON version of the body (if a conversion is possible)
-	 *
-	 * @var mixed
-	 */
-	protected $_json = null;
-
-	/**
-	 * @param string $headers Raw HTTP headers
-	 * @param string $body
-	 */
-	public function __construct($headers, $body)
-	{
-		$this->_parseHeaders($headers);
-		$this->_body = $body;
-	}
-
-	/**
-	 * Parses the headers and HTTP response code (assumed to be first line).
-	 *
-	 * @param string $headers
-	 */
-	protected function _parseHeaders($headers)
-	{
-		$lines = explode("\r\n", $headers);
-		$first = array_shift($lines);
-
-		if (preg_match('/^HTTP\/1\.\d (\d{3})/', $first, $match)) {
-			$this->_code = intval($match[1]);
-		}
-
-		foreach ($lines AS $line) {
-			$parts = explode(':', $line, 2);
-			if (isset($parts[1])) {
-				$this->_headers[] = array(trim(strtolower($parts[0])), trim($parts[1]));
-			}
-		}
-	}
-
-	/**
-	 * Gets the JSON body results. Returns false if the JSON could not be decoded.
-	 *
-	 * @return mixed
-	 */
-	public function getJson()
-	{
-		if ($this->_json === null) {
-			$this->_json = json_decode($this->_body, true);
-			if ($this->_json === null) {
-				$this->_json = false;
-			}
-		}
-
-		return $this->_json;
-	}
-
-	/**
-	 * Gets the raw string body.
-	 *
-	 * @return string
-	 */
-	public function getBody()
-	{
-		return $this->_body;
-	}
-
-	/**
-	 * Sets the body results.
-	 *
-	 * @param string $body
-	 */
-	public function setBody($body)
-	{
-		$this->_body = $body;
-		$this->_json = null;
-	}
-
-	/**
-	 * Gets the HTTP response code.
-	 *
-	 * @return int
-	 */
-	public function getResponseCode()
-	{
-		return $this->_code;
-	}
-
-	/**
-	 * Gets the headers. If no name is specified, returns all headers.
-	 * If a name is given, gets the values for each header with that name.
-	 *
-	 * @param string|null $name
-	 *
-	 * @return array
-	 */
-	public function getHeaders($name = null)
-	{
-		if ($name === null) {
-			return $this->_headers;
-		}
-
-		$output = array();
-		$name = strtolower($name);
-
-		foreach ($this->_headers AS $header) {
-			if ($header[0] == $name) {
-				$output[] = $header[1];
-			}
-		}
-
-		return $output;
-	}
-}
-
-/**
- * Wrapper around a file that will be uploaded to the DeskPRO API.
- * This can wrap around an actual file on the file system or in-PHP
- * data.
- *
- * Create this object and pass it to the correct parameter in a wrapper
- * call to upload a file.
- */
-class DpApiFileUpload
-{
-	/**
-	 * @var string
-	 */
-	protected $_filename;
-
-	/**
-	 * If null, filename is read for data.
-	 *
-	 * @var string|null
-	 */
-	protected $_data;
-
-	/**
-	 * MIME type (eg, text/plain).
-	 *
-	 * @var string|null
-	 */
-	protected $_type;
-
-	/**
-	 * Constructor.
-	 *
-	 * @param string $filename
-	 * @param string|null $data
-	 * @param string|null $type
-	 */
-	public function __construct($filename, $data = null, $type = null)
-	{
-		$this->_filename = $filename;
-		$this->_data = $data;
-		$this->_type = $type;
-	}
-
-	/**
-	 * Gets the file name. Only returns the base name.
-	 *
-	 * @return string
-	 */
-	public function getFilename()
-	{
-		if (strpos($this->_filename, '/') !== false || strpos($this->_filename, '\\') !== false) {
-			return basename($this->_filename);
-		} else {
-			return $this->_filename;
-		}
-	}
-
-	/**
-	 * Gets the data from memory or the filesystem.
-	 *
-	 * @return string
-	 */
-	public function getData()
-	{
-		if ($this->_data === null) {
-			if (!file_exists($this->_filename) || !is_readable($this->_filename)) {
-				throw new DpApiException("Could not read $this->_filename to upload");
-			}
-
-			return file_get_contents($this->_filename);
-		} else {
-			return $this->_data;
-		}
-	}
-
-	/**
-	 * Gets the MIME type.
-	 *
-	 * @return null|string
-	 */
-	public function getType()
-	{
-		return $this->_type;
-	}
-}
-
-/**
- * General DP API exception type.
- */
-class DpApiException extends Exception {}
-
-/**
- * An exception that represents a failed authentication with the API.
- */
-class DpApiAuthException extends DpApiException {}
-
-/**
- * An exception that represents the API not returning a JSON value.
- */
-class DpApiResponseException extends DpApiException {}
