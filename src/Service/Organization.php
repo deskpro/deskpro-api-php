@@ -9,7 +9,7 @@ namespace DeskPRO\Service;
  * @link https://support.deskpro.com/kb/articles/90-people Official Documentation
  * @author Abhinav Kumar <abhinav.kumar@deskpro.com>
  */
-class Organization extends AbstractApi
+class Organization extends AbstractService
 {
 
     /**
@@ -31,59 +31,59 @@ class Organization extends AbstractApi
      * Search for organization matching criteria
      * 
      * @param \DeskPRO\Criteria $criteria
-     * @return \DpApiResult Result Object
+     * @return \DeskPRO\Api\Result Result Object
      */
     public function find(\DeskPRO\Criteria $criteria)
     {
-        return $this->interface->findOrganizations($criteria->toArray());
+        return $this->call('GET', '/organizations', $criteria->toArray());
     }
 
     /**
      * Gets an Organization by organization ID
      * 
      * @param int $organizationId
-     * @return \DpApiResult Result Object
+     * @return \DeskPRO\Api\Result Result Object
      */
     public function findById($organizationId)
     {
-        return $this->interface->getOrganization($organizationId);
+        return $this->call('GET', '/organizations/' . intval($organizationId));
     }
 
     /**
      * Saves an Organization
      * 
      * @param \DeskPRO\Builder\Organization $organization
-     * @return \DpApiResult Result Object
+     * @return \DeskPRO\Api\Result Result Object
      */
     public function save(\DeskPRO\Builder\Organization $organization)
     {
         if ($organization->getId()) {
-            return $this->interface->updateOrganization($organization->getId(), $organization->getDataArray());
+            return $this->call('POST', '/organizations/' . intval($organization->getId()), $organization->getDataArray());
         }
 
-        return $this->interface->createOrganization($organization->getDataArray());
+        return $this->call('POST', '/organizations', $organization->getDataArray());
     }
 
     /**
      * Deletes an Organization by ID
      * 
      * @param int $organizationId Organization ID
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
     public function deleteById($organizationId)
     {
-        return $this->interface->deleteOrganization($organizationId);
+        return $this->call('DELETE', '/organizations/' . intval($organizationId));
     }
 
     /**
      * Gets a link to an organization's picture
      * 
      * @param int $organizationId Organization ID
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function getOrganizationPicture($organizationId)
+    public function getPicture($organizationId)
     {
-        return $this->interface->getOrganizationPicture($organizationId);
+        return $this->call('GET', '/organizations/' . intval($organizationId) . '/picture');
     }
 
     /**
@@ -94,31 +94,41 @@ class Organization extends AbstractApi
      * @param int|null $blob_id Existing attachment ID (blob ID), possibly from uploadFile()
      * @return \DpApiRes
      */
-    public function setOrganizationPicture($organizationId, $file = null, $blob_id = null)
+    public function setPicture($organizationId, $file = null, $blob_id = null)
     {
-        return $this->interface->setOrganizationPicture($organizationId, $file, $blob_id);
+        if ($blob_id) {
+            $params = array('blob_id' => $blob_id);
+        } else if ($file) {
+            $params = array('file' => $file);
+        } else {
+            $params = array();
+        }
+
+        $params = $this->_enforceFileUploadIsset($params, 'file');
+
+        return $this->call('POST', '/organizations/' . intval($organizationId) . '/picture', $params);
     }
 
     /**
      * Deletes an Organization picture
      * 
      * @param int $organizationId Organization ID
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function deleteOrganizationPicture($organizationId)
+    public function deletePicture($organizationId)
     {
-        return $this->interface->deleteOrganizationPicture($organizationId);
+        return $this->call('DELETE', '/organizations/' . intval($organizationId) . '/picture');
     }
 
     /**
      * Gets all SLAs for an organization.
      * 
      * @param int $organizationId Organization ID
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function getOrganizationSlas($organizationId)
+    public function getSlas($organizationId)
     {
-        return $this->interface->getOrganizationSlas($organizationId);
+        return $this->call('GET', '/organizations/' . intval($organizationId) . '/slas');
     }
 
     /**
@@ -127,11 +137,12 @@ class Organization extends AbstractApi
      * @param int $organizationId Organization ID
      * @param int $slaId SLA ID to add
      *
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function addOrganizationSla($organizationId, $slaId)
+    public function addSla($organizationId, $slaId)
     {
-        return $this->interface->addOrganizationSla($organizationId, $slaId);
+        $params = array('sla_id' => $slaId);
+        return $this->call('POST', '/organizations/' . intval($organizationId) . '/slas', $params);
     }
 
     /**
@@ -140,11 +151,11 @@ class Organization extends AbstractApi
      * @param int $organizationId
      * @param int $slaId
      *
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function getOrganizationSla($organizationId, $slaId)
+    public function getSla($organizationId, $slaId)
     {
-        return $this->interface->getOrganizationSla($organizationId, $slaId);
+        return $this->call('GET', '/organizations/' . intval($organizationId) . '/slas/' . intval($slaId));
     }
 
     /**
@@ -153,11 +164,11 @@ class Organization extends AbstractApi
      * @param int $organizationId
      * @param int $slaId
      *
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function deleteOrganizationSla($organizationId, $slaId)
+    public function deleteSla($organizationId, $slaId)
     {
-        return $this->interface->deleteOrganizationSla($organizationId, $slaId);
+        return $this->call('DELETE', '/organizations/' . intval($organizationId) . '/slas/' . intval($slaId));
     }
 
     /**
@@ -165,11 +176,11 @@ class Organization extends AbstractApi
      *
      * @param int $organizationId
      *
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function getOrganizationContactDetails($organizationId)
+    public function getContactDetails($organizationId)
     {
-        return $this->interface->getOrganizationContactDetails($organizationId);
+        return $this->call('GET', '/organizations/' . intval($organizationId) . '/contact-details');
     }
 
     /**
@@ -178,11 +189,11 @@ class Organization extends AbstractApi
      * @param int $organizationId
      * @param int $contactId
      *
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function getOrganizationContactDetail($organizationId, $contactId)
+    public function getContactDetail($organizationId, $contactId)
     {
-        return $this->interface->getOrganizationContactDetail($organizationId, $contactId);
+        return $this->call('GET', '/organizations/' . intval($organizationId) . '/contact-details/' . intval($contactId));
     }
 
     /**
@@ -191,100 +202,100 @@ class Organization extends AbstractApi
      * @param int $organizationId
      * @param int $contactId
      *
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function removeOrganizationContactDetail($organizationId, $contactId)
+    public function removeContactDetail($organizationId, $contactId)
     {
-        return $this->interface->removeOrganizationContactDetail($organizationId, $contactId);
+        return $this->call('DELETE', '/organizations/' . intval($organizationId) . '/contact-details/' . intval($contactId));
     }
 
     /**
      * Gets the list of groups that the organization belongs to.
      *
-     * @param integer $organizationId
+     * @param int $organizationId
      *
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function getOrganizationGroups($organizationId)
+    public function getGroupsByOrganization($organizationId)
     {
-        return $this->interface->getOrganizationGroups($organizationId);
+        return $this->call('GET', '/organizations/' . intval($organizationId) . '/groups');
     }
 
     /**
      * Adds an organization to a group
      *
-     * @param integer $organizationId
-     * @param integer $groupId
+     * @param int $organizationId
+     * @param int $groupId
      *
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function addOrganizationGroup($organizationId, $groupId)
+    public function addGroup($organizationId, $groupId)
     {
-        return $this->interface->addOrganizationGroup($organizationId, $groupId);
+        return $this->call('POST', '/organizations/' . intval($organizationId) . '/groups', array('id' => $groupId));
     }
 
     /**
      * Determines if the an organization is a member of a particular group.
      *
-     * @param integer $organizationId
-     * @param integer $groupId
+     * @param int $organizationId
+     * @param int $groupId
      *
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function getOrganizationGroup($organizationId, $groupId)
+    public function getGroup($organizationId, $groupId)
     {
-        return $this->interface->getOrganizationGroup($organizationId, $groupId);
+        return $this->call('GET', '/organizations/' . intval($organizationId) . '/groups/' . intval($groupId));
     }
 
     /**
      * Removes an organization from a group.
      *
-     * @param integer $organizationId
-     * @param integer $groupId
+     * @param int $organizationId
+     * @param int $groupId
      *
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function removeOrganizationGroup($organizationId, $groupId)
+    public function removeGroup($organizationId, $groupId)
     {
-        return $this->removeOrganizationGroup($organizationId, $groupId);
+        return $this->call('DELETE', '/organizations/' . intval($organizationId) . '/groups/' . intval($groupId));
     }
 
     /**
      * Gets all labels associated with an organization.
      *
-     * @param integer $organizationId
+     * @param int $organizationId
      *
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function getOrganizationLabels($organizationId)
+    public function getLabels($organizationId)
     {
-        return $this->interface->getOrganizationLabels($organizationId);
+        return $this->call('GET', '/organizations/' . intval($organizationId) . '/labels');
     }
 
     /**
      * Adds a label to an organization.
      *
-     * @param integer $organizationId
+     * @param int $organizationId
      * @param string $label
      *
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function addOrganizationLabel($organizationId, $label)
+    public function addLabel($organizationId, $label)
     {
-        return $this->interface->addOrganizationLabel($organizationId, $label);
+        return $this->call('POST', '/organizations/' . intval($organizationId) . '/labels', array('label' => $label));
     }
 
     /**
      * Determines if an organization has a specific label.
      *
-     * @param integer $organizationId
+     * @param int $organizationId
      * @param string $label
      *
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function getOrganizationLabel($organizationId, $label)
+    public function getLabel($organizationId, $label)
     {
-        return $this->interface->getOrganizationLabel($organizationId, $label);
+        return $this->call('GET', '/organizations/' . intval($organizationId) . '/labels/' . $label);
     }
 
     /**
@@ -293,31 +304,222 @@ class Organization extends AbstractApi
      * @param int $organizationId Organization ID
      * @param string $label label to remove
      *
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function removeOrganizationLabel($organizationId, $label)
+    public function removeLabel($organizationId, $label)
     {
-        return $this->interface->removeOrganizationLabel($organizationId, $label);
+        return $this->call('DELETE', '/organizations/' . intval($organizationId) . '/labels/' . $label);
     }
 
     /**
      * Gets a list of custom organizations fields.
      *
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function getOrganizationsFields()
+    public function getFields()
     {
-        return $this->interface->getOrganizationsFields();
+        return $this->call('GET', '/organizations/fields');
     }
 
     /**
      * Gets a list of available user groups.
      *
-     * @return \DpApiResult
+     * @return \DeskPRO\Api\Result
      */
-    public function getOrganizationsGroups()
+    public function getGroups()
     {
-        return $this->getOrganizationsGroups();
+        return $this->call('GET', '/organizations/groups');
+    }
+    
+    /**
+     * Gets members of an organization.
+     *
+     * @param int $organizationId
+     * @param int $page Page number of results to retrieve - defaults to 1
+     * @param null|string $order Order of results (if not specified, uses API default)
+     * @param null|int $cache_id If specified, uses the cached results from this set if possible.
+     *
+     * @return \DeskPRO\Api\Result
+     */
+    public function getMembers($organizationId, $page = 1, $order = null, $cache_id = null)
+    {
+        $params = array();
+        $params['page'] = $page;
+        if ($order !== null) {
+            $params['order'] = $order;
+        }
+        if ($cache_id !== null) {
+            $params['cache'] = $cache_id;
+        }
+
+        return $this->call('GET', '/organizations/' . intval($organizationId) . '/members', $params);
+    }
+    
+    /**
+     * Gets tickets for an organization.
+     *
+     * @param int $organizationId
+     * @param int $page Page number of results to retrieve - defaults to 1
+     * @param null|string $order Order of results (if not specified, uses API default)
+     * @param null|int $cache_id If specified, uses the cached results from this set if possible.
+     *
+     * @return \DeskPRO\Api\Result
+     */
+    public function getOrganizationTickets($organizationId, $page = 1, $order = null, $cache_id = null)
+    {
+        $params = array();
+        $params['page'] = $page;
+        if ($order !== null) {
+            $params['order'] = $order;
+        }
+        if ($cache_id !== null) {
+            $params['cache'] = $cache_id;
+        }
+
+        return $this->call('GET', '/organizations/' . intval($organizationId) . '/tickets', $params);
+    }
+
+    /**
+     * Gets chats for an organization.
+     *
+     * @param int $organizationId
+     * @param int $page Page number of results to retrieve - defaults to 1
+     * @param null|string $order Order of results - this is not currently used by the API
+     * @param null|int $cache_id If specified, uses the cached results from this set if possible.
+     *
+     * @return \DeskPRO\Api\Result
+     */
+    public function getOrganizationChats($organizationId, $page = 1, $order = null, $cache_id = null)
+    {
+        $params = array();
+        $params['page'] = $page;
+        if ($order !== null) {
+            $params['order'] = $order;
+        }
+        if ($cache_id !== null) {
+            $params['cache'] = $cache_id;
+        }
+
+        return $this->call('GET', '/organizations/' . intval($organizationId) . '/chats', $params);
+    }
+
+    /**
+     * Gets activity stream for an organization.
+     *
+     * @param int $organizationId
+     * @param int $page Page number of results to retrieve - defaults to 1
+     *
+     * @return \DeskPRO\Api\Result
+     */
+    public function getOrganizationActivityStream($organizationId, $page = 1)
+    {
+        $params = array();
+        $params['page'] = $page;
+
+        return $this->call('GET', '/organizations/' . intval($organizationId) . '/activity-stream', $params);
+    }
+
+    /**
+     * Gets billing charges for an organization.
+     *
+     * @param int $organizationId
+     * @param int $page Page number of results to retrieve - defaults to 1
+     *
+     * @return \DeskPRO\Api\Result
+     */
+    public function getOrganizationBillingCharges($organizationId, $page = 1)
+    {
+        $params = array();
+        $params['page'] = $page;
+
+        return $this->call('GET', '/organizations/' . intval($organizationId) . '/billing-charges', $params);
+    }
+
+    /**
+     * Gets email domains for an organization.
+     *
+     * @param int $organizationId
+     *
+     * @return \DeskPRO\Api\Result
+     */
+    public function getOrganizationEmailDomains($organizationId)
+    {
+        $params = array();
+
+        return $this->call('GET', '/organizations/' . intval($organizationId) . '/email-domains', $params);
+    }
+
+    /**
+     * Add email domain for an organization.
+     *
+     * @param int $organizationId
+     * @param string $domain
+     *
+     * @return \DeskPRO\Api\Result
+     */
+    public function addOrganizationEmailDomains($organizationId, $domain)
+    {
+        $params = array();
+        $params['domain'] = $domain;
+
+        return $this->call('POST', '/organizations/' . intval($organizationId) . '/email-domains', $params);
+    }
+
+    /**
+     * Determines if email domain exists for an organization.
+     *
+     * @param int $organizationId
+     * @param string $domain
+     *
+     * @return \DeskPRO\Api\Result
+     */
+    public function getOrganizationEmailDomain($organizationId, $domain)
+    {
+        return $this->call('GET', '/organizations/' . intval($organizationId) . '/email-domains/' . $domain);
+    }
+
+    /**
+     * Deletes an email domain for an organization.
+     *
+     * @param int $organizationId
+     * @param string $domain
+     * @param boolean $remove_users True to remove users from this domain from the organization
+     *
+     * @return \DeskPRO\Api\Result
+     */
+    public function deleteOrganizationEmailDomain($organizationId, $domain, $remove_users = false)
+    {
+        $params = array(
+            'remove_users' => ($remove_users ? 1 : 0)
+        );
+        
+        return $this->call('DELETE', '/organizations/' . intval($organizationId) . '/email-domains/' . $domain, $params);
+    }
+
+    /**
+     * Moves email domain users for an organization if they have no organization.
+     *
+     * @param int $organizationId
+     * @param string $domain
+     *
+     * @return \DeskPRO\Api\Result
+     */
+    public function moveOrganizationEmailDomainUsers($organizationId, $domain)
+    {
+        return $this->call('POST', '/organizations/' . intval($organizationId) . '/email-domains/' . $domain . '/move-users');
+    }
+
+    /**
+     * Moves email domain users for an organization if they have an organization.
+     *
+     * @param int $organizationId
+     * @param string $domain
+     *
+     * @return \DeskPRO\Api\Result
+     */
+    public function moveOrganizationEmailDomainTakenUsers($organizationId, $domain)
+    {
+        return $this->call('POST', '/organizations/' . intval($organizationId) . '/email-domains/' . $domain . '/move-taken-users');
     }
 
 }
