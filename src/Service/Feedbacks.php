@@ -52,7 +52,6 @@ class Feedbacks extends AbstractService
 	public function findById($feedbackId)
 	{
 		return $this->call('GET', '/feedback/' . intval($feedbackId));
-		;
 	}
 
 	/**
@@ -69,7 +68,6 @@ class Feedbacks extends AbstractService
 			return $this->call('POST', '/feedback/' . intval($feedback->getId()), $info);
 		}
 		return $this->call('POST', '/feedback', $info);
-		;
 	}
 
 	/**
