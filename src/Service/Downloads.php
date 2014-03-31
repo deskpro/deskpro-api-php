@@ -104,9 +104,9 @@ class Downloads extends AbstractService
 	public function addComment($downloadId, $content, $personId = null, $status = null)
 	{
 		$params = array(
-		    'content' => $content,
-		    'person_id' => $personId,
-		    'status' => $status
+			'content' => $content,
+			'person_id' => $personId,
+			'status' => $status
 		);
 
 		return $this->call('POST', '/downloads/' . intval($downloadId) . '/comments', $params);
@@ -136,8 +136,8 @@ class Downloads extends AbstractService
 	public function updateComment($downloadId, $commentId, $content, $status = NULL)
 	{
 		$params = array(
-		    'content' => $content,
-		    'status' => $status
+			'content' => $content,
+			'status' => $status
 		);
 
 		return $this->call('POST', '/downloads/' . intval($downloadId) . '/comments/' . intval($commentId), $params);
@@ -236,10 +236,10 @@ class Downloads extends AbstractService
 	public function createCategory($title, $parentId = null, $displayOrder = null, $userGroupIds = array())
 	{
 		$params = array(
-		    'title' => $title,
-		    'parent_id' => $parentId,
-		    'display_order' => $displayOrder,
-		    'usergroup_id' => $userGroupIds
+			'title' => $title,
+			'parent_id' => $parentId,
+			'display_order' => $displayOrder,
+			'usergroup_id' => $userGroupIds
 		);
 
 		return $this->call('POST', '/downloads/categories', $params);
@@ -268,9 +268,9 @@ class Downloads extends AbstractService
 	public function updateCategory($categoryId, $title, $parentId = null, $displayOrder = null)
 	{
 		$params = array(
-		    'title' => $title,
-		    'parent_id' => $parentId,
-		    'display_order' => $displayOrder
+			'title' => $title,
+			'parent_id' => $parentId,
+			'display_order' => $displayOrder
 		);
 
 		return $this->call('POST', '/downloads/categories/' . intval($categoryId), $params);
@@ -335,7 +335,7 @@ class Downloads extends AbstractService
 	public function addCategoryGroup($category_id, $group_id)
 	{
 		$params = array(
-		    'id' => $group_id
+			'id' => $group_id
 		);
 
 		return $this->call('POST', '/downloads/categories/' . intval($category_id) . '/groups', $params);

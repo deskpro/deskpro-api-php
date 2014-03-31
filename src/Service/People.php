@@ -227,9 +227,9 @@ class People extends AbstractService
 	public function addEmail($personId, $email, $comment = '', $setPrimary = FALSE)
 	{
 		$params = array(
-		    'email' => $email,
-		    'comment' => $comment,
-		    'set_primary' => $setPrimary
+			'email' => $email,
+			'comment' => $comment,
+			'set_primary' => $setPrimary
 		);
 
 		return $this->call('POST', '/people/' . intval($id) . '/emails', $params);
@@ -261,8 +261,8 @@ class People extends AbstractService
 	public function updateEmail($personId, $emailId, $setPrimary = false, $comment = null)
 	{
 		return $this->call('POST', '/people/' . intval($personId) . '/emails/' . intval($emailId), array(
-			    'set_primary' => $setPrimary,
-			    'comment' => $comment
+			'set_primary' => $setPrimary,
+			'comment' => $comment
 		));
 	}
 

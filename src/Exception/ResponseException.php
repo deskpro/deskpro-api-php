@@ -7,5 +7,5 @@ namespace DeskPRO\Exception;
  */
 class ResponseException extends \DeskPRO\Exception
 {
-    
+	
 }

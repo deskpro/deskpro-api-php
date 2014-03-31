@@ -10,6 +10,7 @@ namespace DeskPRO\Criteria;
  */
 class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 {
+
 	/**
 	 * Adds an Agent to the search criteria
 	 * 
@@ -19,10 +20,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addAgent($agentId)
 	{
 		@$this->_criteria['agent_id'][] = $agentId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds an Agent Team to the search criteria
 	 * 
@@ -32,10 +33,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addAgentTeam($agentTeam)
 	{
 		@$this->_criteria['agent_team_id'][] = $agentTeam;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds a category to search criteria
 	 * 
@@ -45,10 +46,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addCategory($categoryId)
 	{
 		@$this->_criteria['category_id'][] = $categoryId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds a custom field to the search criteria
 	 * 
@@ -59,10 +60,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addCustomField($key, $value)
 	{
 		@$this->_criteria[$key] = $value;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds a label to the search criteria
 	 * 
@@ -72,10 +73,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addLabel($label)
 	{
 		@$this->_criteria['label'][] = $label;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds a language to the search criteria
 	 * 
@@ -85,10 +86,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addLanguage($languageId)
 	{
 		@$this->_criteria['language_id'][] = $languageId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds an organization to the search criteria
 	 * 
@@ -98,10 +99,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addOrganization($organizationId)
 	{
 		@$this->_criteria['organization_id'] = $organizationId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds a participant to the search criteria
 	 * 
@@ -111,10 +112,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addParticipant($personId)
 	{
 		@$this->_criteria['participant'][] = $personId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Requires ticket to be created by the specified person ID.
 	 * 
@@ -124,10 +125,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function createdBy($personId)
 	{
 		@$this->_criteria['person_id'][] = $personId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Requires ticket to be have the specified priority ID.
 	 * 
@@ -137,10 +138,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addPriority($priorityId)
 	{
 		@$this->_criteria['priority_id'][] = $priorityId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Requires ticket to be for the specified product ID.
 	 * 
@@ -150,10 +151,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addProduct($productId)
 	{
 		@$this->_criteria['product_id'][] = $productId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds a query string to the search criteria
 	 * 
@@ -163,10 +164,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addQuery($text)
 	{
 		$this->_criteria['query'] = $text;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds a status to the search criteria
 	 * 
@@ -176,10 +177,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addStatus($status)
 	{
 		@$this->_criteria['status'][] = $status;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * requires the ticket to have the SLA requirement completed (TRUE) or incomplete (FALSE).
 	 * 
@@ -189,10 +190,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function isSlaCompleted($completed)
 	{
 		$this->_criteria['sla_completed'] = $completed;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds an SLA to the search criteria
 	 * 
@@ -202,10 +203,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addSla($slaId)
 	{
 		@$this->_criteria['sla_id'][] = $slaId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Requires ticket to be have the specified SLA status.
 	 * 
@@ -215,10 +216,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addSlaStatus($status)
 	{
 		@$this->_criteria['sla_status'][] = $status;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds a subject to the search criteria
 	 * 
@@ -228,10 +229,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addSubject($subject)
 	{
 		@$this->_criteria['subject'][] = $subject;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Requires ticket to be have the specified urgency (1-10).
 	 * 
@@ -241,10 +242,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addUrgency($urgency)
 	{
 		@$this->_criteria['urgency'][] = $urgency;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Requires ticket to be have the specified workflow ID.
 	 * 
@@ -254,10 +255,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addWorkflow($workflowId)
 	{
 		@$this->_criteria['workflow_id'][] = $workflowId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Specify max ticket ID
 	 * 
@@ -268,10 +269,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function beforeId($ticketId)
 	{
 		$this->_criteria['id_max'] = $ticketId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Specify min ticket ID
 	 * 
@@ -282,10 +283,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function afterId($ticketId)
 	{
 		$this->_criteria['id_min'] = $ticketId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Specify a ref or the beginning characters of a ref
 	 * 
@@ -296,10 +297,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function addRef($ref)
 	{
 		$this->_criteria['ref'] = $ref;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds a creation date to the search criteria
 	 * 
@@ -310,10 +311,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function createdOn($date)
 	{
 		$this->_criteria['date_created'] = $date;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds a resolution date to the search criteria
 	 * 
@@ -323,10 +324,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function resolvedOn($date)
 	{
 		$this->_criteria['date_resolved'] = $date;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds a archival date to the search criteria
 	 * 
@@ -336,10 +337,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function archivedOn($date)
 	{
 		$this->_criteria['date_archived'] = $date;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds a status changed date to the search criteria
 	 * 
@@ -349,10 +350,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function statusChangedOn($date)
 	{
 		$this->_criteria['date_status'] = $date;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Searches for tickets with last agent reply on specified dates
 	 * 
@@ -362,10 +363,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function lastAgentReplyOn($date)
 	{
 		$this->_criteria['date_last_agent_reply'] = $date;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Searches for tickets with last user reply on specified dates
 	 * 
@@ -375,10 +376,10 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function lastUserReplyOn($date)
 	{
 		$this->_criteria['date_last_user_reply'] = $date;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Searches for tickets with last reply as specified dates
 	 * 
@@ -388,7 +389,8 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 	public function lastReplyOn($date)
 	{
 		$this->_criteria['date_last_user_reply'] = $date;
-		
+
 		return $this;
 	}
+
 }

@@ -104,7 +104,7 @@ class Tasks extends AbstractService
 	public function addTaskAssociation($taskId, $ticketId)
 	{
 		$params = array(
-		    'ticket_id' => $ticketId
+			'ticket_id' => $ticketId
 		);
 		return $this->call('POST', '/tasks/' . intval($taskId) . '/associations', $params);
 	}
@@ -158,7 +158,7 @@ class Tasks extends AbstractService
 	public function addTaskComment($taskId, $comment)
 	{
 		$params = array(
-		    'comment' => $comment
+			'comment' => $comment
 		);
 		return $this->call('POST', '/tasks/' . intval($taskId) . '/comments', $params);
 	}

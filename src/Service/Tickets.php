@@ -32,7 +32,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('GET', '/tickets', $criteria->toArray());
 	}
-	
+
 	/**
 	 * Gets information about a ticket
 	 * 
@@ -53,16 +53,16 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	public function save(\DeskPRO\Builder\Ticket $ticket)
 	{
 		$info = $ticket->getDataArray();
-		
+
 		$info = $this->_enforceFileUploadIsset($info, 'attach', true);
-		
+
 		if ($ticket->getId()) {
 			return $this->call('POST', '/tickets/' . intval($ticket->getId()), $info);
 		}
 
 		return $this->call('POST', '/tickets', $info);
 	}
-	
+
 	/**
 	 * Deletes a ticket and optionally bans the email used to create it
 	 * 
@@ -74,7 +74,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('DELETE', '/tickets/' . intval($ticketId), array('ban' => ($banEmail ? 1 : 0)));
 	}
-	
+
 	/**
 	 * UnDeletes a ticket
 	 *
@@ -85,7 +85,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('POST', '/tickets/' . intval($ticketId) . '/undelete');
 	}
-	
+
 	/**
 	 * Marks a ticket as spam and optinally bans the creator's email
 	 *
@@ -108,7 +108,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('POST', '/tickets/' . intval($ticketId) . '/unspam');
 	}
-	
+
 	/**
 	 * Assigns the ticket to the user making the API request
 	 * 
@@ -119,7 +119,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('POST', '/tickets/' . intval($ticketId) . '/claim');
 	}
-	
+
 	/**
 	 * Locks a ticket.
 	 *
@@ -130,7 +130,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('POST', '/tickets/' . intval($ticketId) . '/lock');
 	}
-	
+
 	/**
 	 * Unlocks a ticket.
 	 *
@@ -141,7 +141,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('POST', '/tickets/' . intval($ticketId) . '/unlock');
 	}
-	
+
 	/**
 	 * Merges two tickets.
 	 *
@@ -154,7 +154,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('POST', '/tickets/' . intval($target) . '/merge/' . intval($from));
 	}
-	
+
 	/**
 	 * Splits 1 or more messages out of a ticket into a new ticket
 	 *
@@ -172,7 +172,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 		);
 		return $this->call('POST', '/tickets/' . intval($ticketId) . '/split', $params);
 	}
-	
+
 	/**
 	 * Gets all logs in a ticket.
 	 *
@@ -183,7 +183,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('GET', '/tickets/' . intval($ticketId) . '/logs');
 	}
-	
+
 	/**
 	 * Gets all messages in a ticket.
 	 *
@@ -194,7 +194,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('GET', '/tickets/' . intval($ticketId) . '/messages');
 	}
-	
+
 	/**
 	 * Creates a new ticket message in a ticket.
 	 * 
@@ -211,34 +211,34 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	public function createMessage($ticketId, $message, $files = array(), $blobIds = array(), $isNote = false, $asAgent = false, $isHtml = false, $muteNotification = false)
 	{
 		$params = array();
-		
+
 		$params['message'] = $message;
-		
+
 		if (count($files)) {
 			foreach ($files as $file) {
 				$params['attach'][] = $file;
 			}
 		}
-		
+
 		if (count($blobIds)) {
 			foreach ($blobIds as $blobId) {
 				$params['attachId'][] = $blobId;
 			}
 		}
-		
+
 		$params['is_note'] = $isNote ? 1 : 0;
-		
+
 		$params['message_as_agent'] = $asAgent ? 1 : 0;
-		
+
 		$params['message_is_html'] = $isHtml ? 1 : 0;
-		
+
 		$params['suppress_user_notify'] = $muteNotification ? 1 : 0;
 
 		$params = $this->_enforceFileUploadIsset($params, 'attach', true);
 
 		return $this->call('POST', '/tickets/' . intval($ticketId) . '/messages', $params);
 	}
-	
+
 	/**
 	 * Gets a ticket message.
 	 *
@@ -251,7 +251,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('GET', '/tickets/' . intval($ticketId) . '/messages/' . intval($messageId));
 	}
-	
+
 	/**
 	 * Gets a ticket message's details.
 	 *
@@ -264,7 +264,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('GET', '/tickets/' . intval($ticketId) . '/messages/' . intval($messageId) . '/details');
 	}
-	
+
 	/**
 	 * Gets ticket tasks.
 	 *
@@ -275,7 +275,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('GET', '/tickets/' . intval($ticketId) . '/tasks');
 	}
-	
+
 	/**
 	 * Adds a ticket task.
 	 *
@@ -287,10 +287,10 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	public function addTask($ticketId, $title)
 	{
 		$params = array('title' => $title);
-		
+
 		return $this->call('POST', '/tickets/' . intval($ticketId) . '/tasks', $params);
 	}
-	
+
 	/**
 	 * Gets the SLAs for a ticket
 	 *
@@ -301,7 +301,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('GET', '/tickets/' . intval($ticketId) . '/slas');
 	}
-	
+
 	/**
 	 * Add an SLA to a ticket.
 	 *
@@ -313,10 +313,10 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	public function addTicketSla($ticketId, $slaId)
 	{
 		$params = array('slaId' => $slaId);
-		
+
 		return $this->call('POST', '/tickets/' . intval($ticketId) . '/slas', $params);
 	}
-	
+
 	/**
 	 * Checks whether a ticket SLA is associated with the ticket.
 	 *
@@ -329,7 +329,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('GET', '/tickets/' . intval($ticketId) . '/slas/' . intval($ticketSlaId));
 	}
-	
+
 	/**
 	 * Deletes a ticket SLA from a ticket.
 	 *
@@ -342,7 +342,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('DELETE', '/tickets/' . intval($ticketId) . '/slas/' . intval($ticketSlaId));
 	}
-	
+
 	/**
 	 * Gets ticket billing charges.
 	 *
@@ -353,7 +353,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('GET', '/tickets/' . intval($ticketId) . '/billing-charges');
 	}
-	
+
 	/**
 	 * Adds a ticket billing charge.
 	 *
@@ -371,10 +371,10 @@ class Tickets extends \DeskPRO\Service\AbstractService
 			'amount' => $amount,
 			'comment' => $comment
 		);
-		
+
 		return $this->call('POST', '/tickets/' . intval($ticketId) . '/billing-charges', $params);
 	}
-	
+
 	/**
 	 * Returns whether a charge is associated with the ticket.
 	 *
@@ -387,7 +387,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	{
 		return $this->call('GET', '/tickets/' . intval($ticketId) . '/billing-charges/' . intval($chargeId));
 	}
-	
+
 	/**
 	 * Removes a billing charge from a ticket.
 	 *
@@ -425,11 +425,11 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	public function addParticipant($ticketId, $personId = null, $email = null)
 	{
 		$params = array();
-		
+
 		if ($personId) {
 			$params['personId'] = $personId;
 		}
-		
+
 		if ($email) {
 			$params['email'] = $email;
 		}
@@ -641,7 +641,8 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	public function runTicketFilter($filterId, $page = 1)
 	{
 		$params = array('page' => $page);
-		
+
 		return $this->call('GET', '/tickets/filters/' . intval($filterId), $params);
 	}
+
 }

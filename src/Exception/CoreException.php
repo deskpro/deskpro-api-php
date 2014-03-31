@@ -7,5 +7,5 @@ namespace DeskPRO\Exception;
  */
 class CoreException extends \Exception
 {
-    
+	
 }

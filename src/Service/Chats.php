@@ -23,16 +23,6 @@ class Chats extends AbstractService
 	}
 
 	/**
-	 * Creates and returns a ChatBuilder object
-	 * 
-	 * @return \DeskPRO\Builder\Chat
-	 */
-	public function createChatEditor()
-	{
-		return new \DeskPRO\Builder\Chat();
-	}
-
-	/**
 	 * Finds chats matching the criteria
 	 * 
 	 * @param \DeskPRO\Criteria\Chat $criteria

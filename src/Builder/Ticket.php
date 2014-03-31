@@ -45,7 +45,7 @@ class Ticket
 
 		return $this;
 	}
-	
+
 	/**
 	 * Sets the person who created the ticket
 	 * Tries to find an User with the given ID, if no ID is given
@@ -60,18 +60,18 @@ class Ticket
 			$this->_dataArray['person_id'] = $person->getId();
 		} else {
 			$personDataArray = $person->getDataArray();
-			
+
 			$this->_dataArray['person_email'] = $person->getEmail();
-			
+
 			$this->_dataArray['person_name'] = $person->getName();
-			
+
 			$this->_dataArray['person_organization'] = $personDataArray['organization'];
-			
+
 			$this->_dataArray['person_organization_position'] = $personDataArray['organization_position'];
 		}
 		return $this;
 	}
-	
+
 	/**
 	 * Sets the subject of the ticket
 	 * 
@@ -81,10 +81,10 @@ class Ticket
 	public function setSubject($subject)
 	{
 		$this->_dataArray['subject'] = $subject;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Sets the first message of the ticket
 	 * 
@@ -95,15 +95,15 @@ class Ticket
 	 */
 	public function setMessage($message, $isHtml = false, $asAgent = false)
 	{
-		$this->_dataArray['message']		= $message;
-		
-		$this->_dataArray['message_as_agent']	= $asAgent ? 1 : 0;
-		
-		$this->_dataArray['message_is_html']	= $isHtml ? 1 : 0;
-		
+		$this->_dataArray['message'] = $message;
+
+		$this->_dataArray['message_as_agent'] = $asAgent ? 1 : 0;
+
+		$this->_dataArray['message_is_html'] = $isHtml ? 1 : 0;
+
 		return $this;
 	}
-	
+
 	/**
 	 * Assigns the ticket to the specified agent
 	 * 
@@ -113,10 +113,10 @@ class Ticket
 	public function assignToAgent($personId)
 	{
 		$this->_dataArray['agent_id'] = $personId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Assigns the ticket to the specified agent
 	 * 
@@ -126,10 +126,10 @@ class Ticket
 	public function assignToTeam($teamId)
 	{
 		$this->_dataArray['agent_team_id'] = $teamId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Attaches a file/blob to the ticket
 	 * 
@@ -140,14 +140,14 @@ class Ticket
 	public function attach($file = null, $blobId = null)
 	{
 		if ($file) {
-			@$this->_dataArray['attach'][]	 = $file;
+			@$this->_dataArray['attach'][] = $file;
 		} elseif ($blobId) {
 			@$this->_dataArray['attach_id'][] = $blobId;
 		}
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Sets the ticket category
 	 * 
@@ -157,10 +157,10 @@ class Ticket
 	public function setCategory($categoryId)
 	{
 		$this->_dataArray['category_id'] = $categoryId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Sets the ticket department
 	 * 
@@ -170,10 +170,10 @@ class Ticket
 	public function setDepartment($departmentId)
 	{
 		$this->_dataArray['department_id'] = $departmentId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds a custom field to the ticket
 	 * 
@@ -184,10 +184,10 @@ class Ticket
 	public function addCustomField($key, $value)
 	{
 		$this->_dataArray[$key] = $value;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds a label to the ticket
 	 * 
@@ -197,10 +197,10 @@ class Ticket
 	public function addLabel($label)
 	{
 		@$this->_dataArray['label'][] = $label;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Sets the ticket language
 	 * 
@@ -210,10 +210,10 @@ class Ticket
 	public function setLanguage($languageId)
 	{
 		$this->_dataArray['language_id'] = $languageId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Sets the ticket priority
 	 * 
@@ -223,10 +223,10 @@ class Ticket
 	public function setPriority($priorityId)
 	{
 		$this->_dataArray['priority_id'] = $priorityId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Sets the product the ticket is associated with
 	 * 
@@ -236,10 +236,10 @@ class Ticket
 	public function setProduct($productId)
 	{
 		$this->_dataArray['product_id'] = $productId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Sets the ticket status
 	 * 
@@ -249,10 +249,10 @@ class Ticket
 	public function setStatus($status)
 	{
 		$this->_dataArray['status'] = $status;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Adds an SLA to the ticket<br/>
 	 * Can only add SLAs that agents may manually add.
@@ -263,10 +263,10 @@ class Ticket
 	public function addSla($slaId)
 	{
 		@$this->_dataArray['sla_id'][] = $slaId;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Sets the ticket urgency
 	 * 
@@ -276,10 +276,10 @@ class Ticket
 	public function setUrgency($urgency)
 	{
 		$this->_dataArray['urgency'] = $urgency;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * Sets the ticket workflow
 	 * 
@@ -289,7 +289,8 @@ class Ticket
 	public function setWorkflow($workflowId)
 	{
 		$this->_dataArray['workflow_id'] = $workflowId;
-		
+
 		return $this;
 	}
+
 }

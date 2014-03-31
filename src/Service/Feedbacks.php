@@ -104,9 +104,9 @@ class Feedbacks extends AbstractService
 	public function addComment($feedbackId, $content, $personId = null, $status = null)
 	{
 		$params = array(
-		    'content' => $content,
-		    'person_id' => $personId,
-		    'status' => $status
+			'content' => $content,
+			'person_id' => $personId,
+			'status' => $status
 		);
 
 		return $this->call('POST', '/feedback/' . intval($feedbackId) . '/comments', $params);
@@ -136,8 +136,8 @@ class Feedbacks extends AbstractService
 	public function updateComment($feedbackId, $commentId, $content, $status = NULL)
 	{
 		$params = array(
-		    'content' => $content,
-		    'status' => $status
+			'content' => $content,
+			'status' => $status
 		);
 
 		return $this->call('POST', '/feedback/' . intval($feedbackId) . '/comments/' . intval($commentId), $params);

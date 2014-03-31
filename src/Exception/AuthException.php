@@ -7,5 +7,5 @@ namespace DeskPRO\Exception;
  */
 class AuthException extends \DeskPRO\Exception
 {
-    
+	
 }
