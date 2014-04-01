@@ -7,7 +7,7 @@ namespace DeskPRO\Service;
  *
  * @author Abhinav Kumar <abhinav.kumar@deskpro.com>
  */
-class Articles extends AbstractService
+class Misc extends AbstractService
 {
 
 	/**
