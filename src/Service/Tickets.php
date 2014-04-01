@@ -23,6 +23,16 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	}
 
 	/**
+	 * Creates and returns a Builder object
+	 * 
+	 * @return \DeskPRO\Builder\Ticket
+	 */
+	public function createBuilder()
+	{
+		return new \DeskPRO\Builder\Ticket();
+	}
+
+	/**
 	 * Finds tickets matching the criteria
 	 * 
 	 * @param \DeskPRO\Criteria\Ticket $criteria
