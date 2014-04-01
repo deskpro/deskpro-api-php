@@ -90,18 +90,36 @@ class Api
 	 * @var callable
 	 */
 	protected $_curl_init_callback;
-
+	
+	/** @var \DeskPRO\Service\Articles Articles Service */
+	public $articles;
+	
+	/** @var \DeskPRO\Service\Chats Chats Service */
+	public $chats;
+	
+	/** @var \DeskPRO\Service\Downloads Downloads Service */
+	public $downloads;
+	
+	/** @var \DeskPRO\Service\Feedbacks Feedbck Service */
+	public $feedbacks;
+	
+	/** @var \DeskPRO\Service\Misc Misc API Service */
+	public $misc;
+	
+	/** @var \DeskPRO\Service\News News Service */
+	public $news;
+	
+	/** @var \DeskPRO\Service\Organization Organization Service */
+	public $organization;
+	
 	/** @var \DeskPRO\Service\People The people service */
 	public $people;
 
-	/** @var \DeskPRO\Service\Organization The organization service */
-	public $organization;
-
 	/** @var \DeskPRO\Service\Tasks The tasks service */
 	public $tasks;
-
-	/** @var \DeskPRO\Service\Articles The articles service */
-	public $articles;
+	
+	/** @var \DeskPRO\Service\Tickets Tickets service */
+	public $tickets;
 
 	/**
 	 * @param string $dp_root
@@ -116,14 +134,26 @@ class Api
 		if (!function_exists('curl_init')) {
 			throw new Exception("cURL is not available. The DeskPRO API wrapper cannot be used.");
 		}
+		
+		$this->articles		= new Service\Articles($this);
+		
+		$this->chats		= new Service\Chats($this);
 
-		$this->people = new Service\People($this);
+		$this->downloads	= new Service\Downloads($this);
+		
+		$this->feedbacks	= new Service\Feedbacks($this);
+		
+		$this->misc		= new Service\Misc($this);
 
-		$this->organization = new Service\Organization($this);
+		$this->news		= new Service\News($this);
 
-		$this->tasks = new Service\Tasks($this);
-
-		$this->articles = new Service\Articles($this);
+		$this->organization	= new Service\Organization($this);
+		
+		$this->people		= new Service\People($this);
+		
+		$this->tasks		= new Service\Tasks($this);
+		
+		$this->tickets		= new Service\Tickets($this);
 
 		$this->setRoot($dp_root);
 		$this->setApiKey($api_key);
