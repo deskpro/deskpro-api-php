@@ -20,12 +20,17 @@ Full documentation on using the PHP wrapper class is maintained with our [API do
 Example: Creating a new ticket
 ------------------------------
 
-    require 'src/DpApi.php';
+    require 'vendor/autoload.php';
 
-    $api = new DpApi('https://support.example.com/', '123:XXXXXXXXXXXXXXXXXX');
-    $api->createTicket(array(
-        'person_email' => 'john@example.com',
-        'person_name'  => 'John Doe',
-        'subject'      => 'New Ticket',
-        'message'      => 'This is a new ticket.',
-    ));
+    $api = new DeskPRO\Api('https://support.example.com/', '123:XXXXXXXXXXXXXXXXXX');
+
+    $newTicket = $api->tickets->createBuilder();
+    
+    $newTicket->setSubject("Ticket Created via API")
+                ->setMessage("First Message");
+
+    $response = $api->tickets->save($newTicket);
+
+    if ($response) {
+        $response->getData();
+    }
