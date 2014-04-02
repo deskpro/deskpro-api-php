@@ -66,7 +66,7 @@ class Chats extends AbstractService
 	 *
 	 * @return \DeskPRO\Api\Result
 	 */
-	public function leaveChat($chatId, $action = '')
+	public function leave($chatId, $action = '')
 	{
 		$params = array('action' => $action);
 

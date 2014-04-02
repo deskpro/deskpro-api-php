@@ -484,7 +484,7 @@ class People extends AbstractService
 	 *
 	 * @param int $personId The Person's ID
 	 *
-	 * @return array|bool
+	 * @return \DeskPRO\Api\Result
 	 */
 	public function getPersonLabels($personId)
 	{
@@ -535,7 +535,7 @@ class People extends AbstractService
 	 *
 	 * @return \DeskPRO\Api\Result
 	 */
-	public function getPeopleFields()
+	public function getFields()
 	{
 		return $this->call('GET', '/people/fields');
 	}
@@ -545,7 +545,7 @@ class People extends AbstractService
 	 *
 	 * @return \DeskPRO\Api\Result
 	 */
-	public function getPeopleGroups()
+	public function getGroups()
 	{
 		return $this->call('GET', '/people/groups');
 	}

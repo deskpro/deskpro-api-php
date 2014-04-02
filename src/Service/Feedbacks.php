@@ -27,7 +27,7 @@ class Feedbacks extends AbstractService
 	 * 
 	 * @return \DeskPRO\Builder\Task
 	 */
-	public function createTaskEditor()
+	public function createFeedbackEditor()
 	{
 		return new \DeskPRO\Builder\Task();
 	}

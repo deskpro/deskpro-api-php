@@ -27,7 +27,7 @@ class Downloads extends AbstractService
 	 * 
 	 * @return \DeskPRO\Builder\Downloads
 	 */
-	public function createTaskEditor()
+	public function createDownloadEditor()
 	{
 		return new \DeskPRO\Builder\Downloads();
 	}

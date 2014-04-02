@@ -35,7 +35,7 @@ class Organization extends \DeskPRO\Criteria\AbstractCriteria
 	 * @param mixed $value The custom field value
 	 * @return \DeskPRO\Criteria\Organization
 	 */
-	public function addCustomFiled($key, $value)
+	public function addCustomField($key, $value)
 	{
 		@$this->_criteria['field'][$key] = $value;
 
