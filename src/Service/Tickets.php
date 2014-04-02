@@ -38,7 +38,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	 * @param \DeskPRO\Criteria\Ticket $criteria
 	 * @return \DeskPRO\Api\Result
 	 */
-	public function findTickets(\DeskPRO\Criteria\Ticket $criteria)
+	public function find(\DeskPRO\Criteria\Ticket $criteria)
 	{
 		return $this->call('GET', '/tickets', $criteria->toArray());
 	}
@@ -97,7 +97,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	}
 
 	/**
-	 * Marks a ticket as spam and optinally bans the creator's email
+	 * Marks a ticket as spam and optionally bans the creator's email
 	 *
 	 * @param int $ticketId ID of the ticket that needs to be marked
 	 * @param bool $banEmail If true bans the email used to create this ticket
