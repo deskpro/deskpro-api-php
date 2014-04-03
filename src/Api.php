@@ -335,7 +335,7 @@ class Api
 				$url .= '?' . http_build_query($params);
 				curl_setopt($curl, CURLOPT_URL, $url);
 		}
-
+		
 		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
 
 		$response = curl_exec($curl);
@@ -358,7 +358,7 @@ class Api
 			}
 		} while ($is_continue);
 
-		$results = new DpApiResult($headers, $body);
+		$results = new Api\Result($headers, $body);
 
 		$this->_errors = false;
 		$this->_last = $results;
@@ -391,7 +391,7 @@ class Api
 	protected function _hasFileUploads(array $params)
 	{
 		foreach ($params AS $param) {
-			if ($param instanceof DpApiFileUpload) {
+			if ($param instanceof Api\FileUpload) {
 				return true;
 			} else if (is_array($param) && $this->_hasFileUploads($param)) {
 				return true;
@@ -418,7 +418,7 @@ class Api
 			$form_name = ($path === '' ? $key : $path . '[' . $key . ']');
 			if (is_array($value)) {
 				$output .= $this->_getCurlMultiPart($value, $boundary, $form_name);
-			} else if ($value instanceof DpApiFileUpload) {
+			} else if ($value instanceof Api\FileUpload) {
 				$type = $value->getType() ? : 'application/octet-stream';
 				$headers = array('Content-Type: ' . $type);
 				$output .= $this->_getMultiPartValue($boundary, $form_name, $value->getData(), $value->getFilename(), $headers);

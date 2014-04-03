@@ -64,10 +64,14 @@ class Ticket
 			$this->_dataArray['person_email'] = $person->getEmail();
 
 			$this->_dataArray['person_name'] = $person->getName();
-
-			$this->_dataArray['person_organization'] = $personDataArray['organization'];
-
-			$this->_dataArray['person_organization_position'] = $personDataArray['organization_position'];
+			
+			if (isset($personDataArray['organization']) && !empty($personDataArray['organization'])) {
+				$this->_dataArray['person_organization'] = $personDataArray['organization'];
+			}
+			
+			if (isset($personDataArray['organization_position'])) {
+				$this->_dataArray['person_organization_position'] = $personDataArray['organization_position'];
+			}
 		}
 		return $this;
 	}

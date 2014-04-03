@@ -57,18 +57,18 @@ class AbstractService
 	 *
 	 * @param mixed $input
 	 *
-	 * @return DpApiFileUpload
+	 * @return \DeskPRO\Api\FileUpload
 	 *
-	 * @throws DpApiException
+	 * @throws \DeskPRO\Api\Exception
 	 */
 	protected function _enforceFileUpload($input)
 	{
-		if ($input instanceof DpApiFileUpload) {
+		if ($input instanceof \DeskPRO\Api\FileUpload) {
 			return $input;
 		} else if (is_scalar($input)) {
-			return new DpApiFileUpload($input);
+			return new \DeskPRO\Api\FileUpload($input);
 		} else {
-			throw new DpApiException('Cannot force an input to a file (expected string or DpApiFileUpload object)');
+			throw new \DeskPRO\Api\Exception('Cannot force an input to a file (expected string or \DeskPRO\Api\FileUpload object)');
 		}
 	}
 
@@ -81,7 +81,7 @@ class AbstractService
 	 *
 	 * @return array
 	 *
-	 * @throws DpApiException
+	 * @throws \DeskPRO\Api\Exception
 	 */
 	protected function _enforceFileUploadIsset(array $params, $key, $multiple = false)
 	{
@@ -95,7 +95,7 @@ class AbstractService
 					$value = $this->_enforceFileUpload($value);
 				}
 			} else {
-				throw new DpApiException("Passed multiple files to $key when only one was expected");
+				throw new \DeskPRO\Api\Exception("Passed multiple files to $key when only one was expected");
 			}
 		} else {
 			$params[$key] = $this->_enforceFileUpload($params[$key]);
