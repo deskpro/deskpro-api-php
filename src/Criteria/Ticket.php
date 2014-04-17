@@ -63,6 +63,19 @@ class Ticket extends \DeskPRO\Criteria\AbstractCriteria
 
 		return $this;
 	}
+	
+	/**
+	 * Adds a Department to the search criteria
+	 *
+	 * @param int $departmentId Department ID to search for
+	 * @return \DeskPRO\Criteria\Ticket
+	 */
+	public function addDepartment($departmentId)
+	{
+		@$this->_criteria['department_id'][] = $departmentId;
+
+		return $this;
+	}
 
 	/**
 	 * Adds a label to the search criteria
