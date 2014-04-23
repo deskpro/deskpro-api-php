@@ -57,12 +57,12 @@ class People extends AbstractService
 	/**
 	 * Deletes a Person by ID
 	 *
-	 * @param int $id ID of the Person to delete
+	 * @param int $personId ID of the Person to delete
 	 * @return \DeskPRO\Api\Result
 	 */
-	public function deleteById($id)
+	public function deleteById($personId)
 	{
-		return $this->interface->deletePerson($id);
+		return $this->call('DELETE', '/people/' . intval($personId));
 	}
 
 	/**
