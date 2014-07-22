@@ -153,6 +153,32 @@ class Ticket
 	}
 
 	/**
+	 * Attaches multiple files/blobs to the ticket
+	 * 
+	 * @param DpApiFileUpload|string|null $file File to upload
+	 * @param integer|null $blobId Existing attachment ID (blob ID), possibly from uploadFile()
+	 * @return \DeskPRO\Builder\Ticket
+	 */
+	public function attachMultiple($file = null, $blobId = null)
+	{
+    if(!isset($this->_dataArray['attach'])) {
+      $this->_dataArray['attach'] = array();
+    }
+
+    if(!isset($this->_dataArray['attach'])) {
+      $this->_dataArray['attach_id'] = array();
+    }
+
+		if ($file) {
+			@$this->_dataArray['attach'] []= $file;
+		} elseif ($blobId) {
+			@$this->_dataArray['attach_id'][] = $blobId;
+		}
+
+		return $this;
+	}
+
+	/**
 	 * Sets the ticket category
 	 * 
 	 * @param int $categoryId ID of the category the ticket is in
