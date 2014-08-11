@@ -1,14 +1,10 @@
 <?php
 
 /*
- * This example demonstrates how to find tickets in the database.
- *
- * In this example, we are using the Department field and the Agent field
- * to find all tickets assigned to a particular agent that are in a
- * particular department.
+ * This example demonstrates how to get a ticket from a ticket ID
  */
 
- //-----------------------------------------------------
+//-----------------------------------------------------
 // DESKPRO API SETTINGS
 //-----------------------------------------------------
 
@@ -24,23 +20,14 @@ $api = new \DeskPRO\Api($deskpro_url, $api_key);
 // EXAMPLE VARIABLES
 //-----------------------------------------------------
 
-// The department to search for
-$department_id = 2; 
-
-// The agent to search for
-$agent_id      = 1;      
+// The ticket id
+$ticketId = 5
 
 //-----------------------------------------------------
 // EXAMPLE CODE
 //-----------------------------------------------------
 
-// Then we need to build our list of criteria
-$criteria = $api->tickets->createCriteria()
-	->addAgent($agent_id)
-	->addDepartment($department_id);
-
-// Then we can get our results
-$result = $api->tickets->find($criteria);
+$result = $api->tickets->findById($ticketId);
 
 if (!$result->isError()) {
 	$data = $result->getData();
