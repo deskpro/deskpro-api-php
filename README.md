@@ -10,7 +10,6 @@ Wrapper Requirements
 
 The PHP API wrapper requires PHP 5.2 or newer with the cURL extension.
 
-The wrapper can only integrate with DeskPRO v4 build 129 or newer.
 
 Using The API Wrapper
 =====================
