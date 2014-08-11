@@ -5,6 +5,7 @@ The DeskPRO PHP API wrapper is a simple class to access and interact with DeskPR
 
 For more information on the underlying REST API, please see our [API documentation](http://support.deskpro.com/kb/17-deskpro-api).
 
+
 Wrapper Requirements
 --------------------
 
@@ -12,7 +13,7 @@ The PHP API wrapper requires PHP 5.2 or newer with the cURL extension.
 
 
 Using The API Wrapper
-=====================
+---------------------
 
 The best way to get started with the API Wrapper is to view the fully functioning examples in the [examples folder](https://github.com/DeskPRO/deskpro-api-php/tree/master/examples).
 
@@ -38,6 +39,7 @@ Quick Start
     $api = new \DeskPRO\Api('http://example.com/deskpro', '123:XYZ');
 
 **4.** Use `$api` to send API requests to your DeskPRO helpdesk. Refer to the `examples` directory for fully-functional examples.
+
 
 Using Composer
 --------------
