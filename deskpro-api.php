@@ -2,7 +2,7 @@
 /*
  * This file loads the DeskPRO API in to your PHP project.
  *
- * 1) Include this file in your profile:
+ * 1) Include this file in your project:
  *
  *     require 'deskpro-api.php';
  *
@@ -18,7 +18,7 @@
 define('DESKPRO_API_LIB_PATH', realpath(__DIR__.'/src'));
 
 spl_autoload_register(function($classname) {
-	if (strpos($classname, 'DeskPRO\\Api') !== 0) {
+	if (strpos($classname, 'DeskPRO\\') !== 0) {
 		return false;
 	}
 

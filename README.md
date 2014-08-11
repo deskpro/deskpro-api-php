@@ -12,25 +12,29 @@ The PHP API wrapper requires PHP 5.2 or newer with the cURL extension.
 
 The wrapper can only integrate with DeskPRO v4 build 129 or newer.
 
-Using the Wrapper
------------------
+Using The API Wrapper
+=====================
 
 Full documentation on using the PHP wrapper class is maintained with our [API documentation](http://support.deskpro.com/kb/17-deskpro-api). Specific wrapper documentation can be found [here](https://support.deskpro.com/kb/articles/97-deskpro-api-wrapper-php).
 
-Example: Creating a new ticket
-------------------------------
+Quick Start
+-----------
 
-    require 'vendor/autoload.php';
+**1.** Clone or download this repository and put the source files somewhere in  your project.
 
-    $api = new DeskPRO\Api('https://support.example.com/', '123:XXXXXXXXXXXXXXXXXX');
+**2.** Include the `deskpro-api.php` file:
 
-    $newTicket = $api->tickets->createBuilder();
-    
-    $newTicket->setSubject("Ticket Created via API")
-                ->setMessage("First Message");
+    require 'deskpro-api.php';
 
-    $response = $api->tickets->save($newTicket);
+**3.** Create a new instance of the API class:
 
-    if ($response) {
-        $response->getData();
-    }
+    $api = new \DeskPRO\Api('http://example.com/deskpro', '123:XYZ');
+
+**4.** Use `$api` to send API requests to your DeskPRO helpdesk. Refer to the `examples` directory for fully-functional examples.
+
+Using Composer
+--------------
+
+You can also install the API library through composer: [https://packagist.org/packages/deskpro/deskpro-api-php](https://packagist.org/packages/deskpro/deskpro-api-php)
+
+    $ php composer.phar require deskpro/deskpro-api-php dev-master
