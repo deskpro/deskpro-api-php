@@ -15,7 +15,15 @@ The wrapper can only integrate with DeskPRO v4 build 129 or newer.
 Using The API Wrapper
 =====================
 
-Full documentation on using the PHP wrapper class is maintained with our [API documentation](http://support.deskpro.com/kb/17-deskpro-api). Specific wrapper documentation can be found [here](https://support.deskpro.com/kb/articles/97-deskpro-api-wrapper-php).
+The best way to get started with the API Wrapper is to view the fully functioning examples in the [examples folder](https://github.com/DeskPRO/deskpro-api-php/tree/master/examples).
+
+The following larger projects may also server as a useful reference
+* [Convert your tickets to PDF documents](https://github.com/DeskPRO/api-app-ticket-pdfs)
+
+Full documentation on using the PHP wrapper class is maintained with our [API documentation](http://support.deskpro.com/kb/17-deskpro-api). 
+
+Specific wrapper documentation can be found [here](https://support.deskpro.com/kb/articles/97-deskpro-api-wrapper-php).
+
 
 Quick Start
 -----------
