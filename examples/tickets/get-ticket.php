@@ -21,7 +21,7 @@ $api = new \DeskPRO\Api($deskpro_url, $api_key);
 //-----------------------------------------------------
 
 // The ticket id
-$ticketId = 5
+$ticketId = 5;
 
 //-----------------------------------------------------
 // EXAMPLE CODE
