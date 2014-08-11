@@ -28,7 +28,7 @@ $api = new \DeskPRO\Api($deskpro_url, $api_key);
 $department_id = 2; 
 
 // The agent to search for
-$agent_id      = 1;      
+$agent_id = 1;      
 
 //-----------------------------------------------------
 // EXAMPLE CODE
