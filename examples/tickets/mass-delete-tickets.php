@@ -57,7 +57,11 @@ class DeleteTickets
 				continue;
 			}
 
-			$this->api->tickets->delete($ticket['id']);
+			$result = $this->api->tickets->delete($ticket['id']);
+			if ($result->isError()) {
+				echo $result->getErrorMessage();
+				exit;
+			}
 
 			echo 'Deleted ticket # ', $ticket['id'], PHP_EOL;
 		}

@@ -58,5 +58,5 @@ if (!$result->isError()) {
 	$data = $result->getData();
 	print_r($data);
 } else {
-	echo $result->getResponseCode() . ' ' . $result->getResponseCodeAsText();
+	echo $result->getErrorMessage();
 }

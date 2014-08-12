@@ -5,7 +5,7 @@ namespace DeskPRO\Api;
 /**
  * Represents the HTTP call results from a DeskPRO API call.
  */
-class Result
+class Result implements \ArrayAccess, \IteratorAggregate
 {
     protected static $_http_status_messages = array(
         // Informational 1xx
@@ -97,16 +97,11 @@ class Result
     {
         $this->_parseHeaders($headers);
         $this->_body = $body;
-    }
 
-    /**
-     * Check if the response is an error response (4xx or 5xx).
-     *
-     * @return bool
-     */
-    public function isError()
-    {
-        return $this->_code >= 400;
+        $this->_json = @json_decode($this->_body, true);
+        if ($this->_json === null) {
+            $this->_json = false;
+        }
     }
 
     /**
@@ -132,30 +127,25 @@ class Result
     }
 
     /**
-     * Gets the JSON body results. Returns false if the JSON could not be decoded.
+     * Gets the returned data. Returns false if the request did not return a valid JSON body.
      *
-     * @return mixed
-     */
-    public function getJson()
-    {
-        if ($this->_json === null) {
-            $this->_json = json_decode($this->_body, true);
-            if ($this->_json === null) {
-                $this->_json = false;
-            }
-        }
-
-        return $this->_json;
-    }
-
-    /**
-     * Gets the returned Data
+     * There are other ways to access the data:
+     * <code>
+     * $result->getData();        // an array of all data
+     * $result->get('something'); // get a single value
+     * $result->something;        // alternative way to get the value
+     * $result['something'];      // another alternative
      *
-     * @return mixed
+     * foreach ($result as $k => $v) {
+     *     // You can also loop over the result
+     * }
+     * </code>
+     *
+     * @return array
      */
     public function getData()
     {
-        return $this->getJson();
+        return $this->_json;
     }
 
     /**
@@ -225,4 +215,76 @@ class Result
         return $output;
     }
 
+    /**
+     * Check if the response is an error response (4xx or 5xx).
+     *
+     * @return bool
+     */
+    public function isError()
+    {
+        return $this->_code >= 400 || $this->getErrorCode() || $this->_json === false;
+    }
+
+    /**
+     * Get the error code, if there is one.
+     *
+     * @return string|null
+     */
+    public function getErrorCode()
+    {
+        return $this->get('error_code');
+    }
+
+    /**
+     * Get the error message, if there is one.
+     *
+     * @return string|null
+     */
+    public function getErrorMessage()
+    {
+        return $this->get('error_message');
+    }
+
+    /**
+     * Get a returned value
+     *
+     * @param string $k       The key of the value you want to get
+     * @param mixed $default  The value to return if the $k value does not exist
+     */
+    public function get($k, $default = null)
+    {
+        return ($this->_json && array_key_exists($k, $this->_json)) ? $this->_json[$k] : $default;
+    }
+
+    /**
+     * Check if a value exists. Note that this simply checks if the value
+     * was returned by the API, it could be empty or null. If you want to check
+     * that a value exists and it's empty, use has().
+     *
+     * @param string $k
+     * @return bool
+     */
+    public function exists($k)
+    {
+        return ($this->_json && array_key_exists($k, $this->_json));
+    }
+
+    /**
+     * Check if a value exists and is not empty.
+     *
+     * @param string $k
+     * @return bool
+     */
+    public function has($k)
+    {
+        return ($this->_json && array_key_exists($k, $this->_json) && !empty($this->_json[$k]));
+    }
+
+    public function getIterator()     { return new \ArrayIterator($this->_json ? $this->_json : array()); }
+    public function __get($k)         { return $this->get($k); }
+    public function __isset($k)       { return $this->exists($k); }
+    public function offsetExists($k)  { return $this->exists($k); }
+    public function offsetGet($k)     { return $this->get($k); }
+    public function offsetSet($k, $v) { throw new \BadMethodCallException(); }
+    public function offsetUnset($k)   { throw new \BadMethodCallException(); }
 }
