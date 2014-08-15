@@ -24,14 +24,14 @@ $api = new \DeskPRO\Api($deskpro_url, $api_key);
 $ticket_id	= 5;
 
 // [Optional] Whether to ban the email used to create this ticket
-$banEmail = TRUE;
+$ban_email	= TRUE;
 
 //-----------------------------------------------------
 // EXAMPLE CODE
 //-----------------------------------------------------
 
 // Delete the ticket
-$result = $api->tickets->delete($ticketId, $banEmail);		
+$result = $api->tickets->delete($ticket_id, $ban_email);
 
 if (!$result->isError()) {
 	// Update persisted sucessfully
