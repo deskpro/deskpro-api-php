@@ -23,6 +23,9 @@ $api = new \DeskPRO\Api($deskpro_url, $api_key);
 // ID of the ticket to be updated
 $ticketId = 5;
 
+// ID of the new agent to assign this ticket to
+$agentId = 2;
+
 //-----------------------------------------------------
 // EXAMPLE CODE
 //-----------------------------------------------------
@@ -30,10 +33,13 @@ $ticketId = 5;
 // Initialize a ticket builder
 $ticket = $api->tickets->createBuilder();
 
-
-$ticket->setId($ticketId) 						// Set the ticket ID
-	->setSubject('New Subject of the ticket') 	// Set or change values
-	->assignToAgent($agentId); 					// Change or set an Agent
+// Set the ticket ID
+$ticket->setId($ticketId)
+	// Set or change values
+	->setSubject('New Subject of the ticket')
+	
+	// Change or set an Agent
+	->assignToAgent($agentId);
 
 $result = $api->tickets->save($ticket);			// Save the ticket to persist the changes
 
