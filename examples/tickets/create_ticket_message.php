@@ -30,7 +30,7 @@ $message			= 'Thank you for contacting us. We are currently inspecting your issu
 $file				= array('path/to/file.ext', 'path/to/another/file.ext');
 
 // [OPTIONAL] Array of already uploaded blob IDs
-$blob_ids			= array('2, 4, 6);
+$blob_ids			= array('2, 4, 6');
 
 // [OPTIONAL] Whether to save the reply as a note, rather than a public reply. Defaults to false.
 $is_note			= FALSE;
@@ -42,7 +42,7 @@ $as_agen			= FALSE;
 $is_html			= FALSE;
 
 // If true, suppresses user notification of the reply. Defaults to false.
-$mute_notification	= FALSE;
+$mute_notification		= FALSE;
 
 //-----------------------------------------------------
 // EXAMPLE CODE
