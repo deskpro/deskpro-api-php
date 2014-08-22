@@ -31,7 +31,7 @@ $label		= 'How Tos';
 //-----------------------------------------------------
 
 // Get article label
-$result = $api->tickets->getArticleLabel($article_id, $label);
+$result = $api->articles->getArticleLabel($article_id, $label);
 
 if (!$result->isError()) {
 	// Request completed successfully

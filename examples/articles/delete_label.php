@@ -31,7 +31,7 @@ $label		= 'How Tos';
 //-----------------------------------------------------
 
 // Remove article label
-$result = $api->tickets->removeArticleLabel($article_id, $label);
+$result = $api->articles->removeArticleLabel($article_id, $label);
 
 if (!$result->isError()) {
 	// Request completed successfully

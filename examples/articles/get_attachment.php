@@ -31,7 +31,7 @@ $attachment_id	= 9;
 //-----------------------------------------------------
 
 // Get article attachment
-$result = $api->tickets->getArticleAttachment($article_id, $attachment_id);
+$result = $api->articles->getArticleAttachment($article_id, $attachment_id);
 
 if (!$result->isError()) {
 	// Request completed successfully

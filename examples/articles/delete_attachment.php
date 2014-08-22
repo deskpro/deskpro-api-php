@@ -31,7 +31,7 @@ $attachment_id	= 9;
 //-----------------------------------------------------
 
 // Remove article attachment
-$result = $api->tickets->removeArticleAttachment($article_id, $attachment_id);
+$result = $api->articles->removeArticleAttachment($article_id, $attachment_id);
 
 if (!$result->isError()) {
 	// Request completed successfully
