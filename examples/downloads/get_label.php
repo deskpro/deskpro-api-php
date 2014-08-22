@@ -31,7 +31,7 @@ $label		= 'freebies';
 //-----------------------------------------------------
 
 // Get download label
-$result = $api->downloads->getDownloadLabel($download_id, $label);
+$result = $api->downloads->getLabel($download_id, $label);
 
 if (!$result->isError()) {
 	// Request completed successfully

@@ -31,7 +31,7 @@ $comment_id	= 8;
 //-----------------------------------------------------
 
 // Get the comment
-$result = $api->downloads->getDownloadComment($download_id, $comment_id);
+$result = $api->downloads->getComment($download_id, $comment_id);
 
 if (!$result->isError()) {
 	// Comment retrieved sucessfully

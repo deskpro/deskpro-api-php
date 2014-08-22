@@ -31,7 +31,7 @@ $label 		= 'freebies';
 //-----------------------------------------------------
 
 // Add the label
-$result = $api->downloads->addDownloadLabel($download_id, $label);
+$result = $api->downloads->addLabel($download_id, $label);
 
 if (!$result->isError()) {
 	// label added successfully

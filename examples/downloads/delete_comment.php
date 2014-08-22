@@ -31,7 +31,7 @@ $comment_id	= 8;
 //-----------------------------------------------------
 
 // Delete the comment
-$result = $api->downloads->deleteDownloadComment($download_id, $comment_id);
+$result = $api->downloads->deleteComment($download_id, $comment_id);
 
 if (!$result->isError()) {
 	// Comment deleted sucessfully

@@ -28,7 +28,7 @@ $category_id = 8;
 //-----------------------------------------------------
 
 // Delete the category
-$result = $api->downloads->deleteCategoryById($category_id);
+$result = $api->downloads->deleteCategory($category_id);
 
 if (!$result->isError()) {
 	// Category deleted successfully 

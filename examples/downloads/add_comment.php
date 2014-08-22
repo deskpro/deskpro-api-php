@@ -34,7 +34,7 @@ $comment_text 	= '<p>Pellentesque habitant morbi tristique senectus et netus et 
 //-----------------------------------------------------
 
 // Create the comment
-$result = $api->downloads->addDownloadComment($download_id, $comment_text, $person_id);
+$result = $api->downloads->addComment($download_id, $comment_text, $person_id);
 
 if (!$result->isError()) {
 	// Comment created successfully 

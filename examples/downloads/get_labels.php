@@ -28,7 +28,7 @@ $download_id	= 5;
 //-----------------------------------------------------
 
 // Get the labels
-$result = $api->downloads->getDownloadLabels($download_id);
+$result = $api->downloads->getLabels($download_id);
 
 if (!$result->isError()) {
 	// labels retrieved sucessfully

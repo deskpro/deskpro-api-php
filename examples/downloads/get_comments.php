@@ -28,7 +28,7 @@ $download_id	= 5;
 //-----------------------------------------------------
 
 // Get the comments
-$result = $api->downloads->getDownloadComments($download_id);
+$result = $api->downloads->getComments($download_id);
 
 if (!$result->isError()) {
 	// Comments retrieved sucessfully

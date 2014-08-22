@@ -34,7 +34,7 @@ $new_comment_text = '<p>Pellentesque habitant morbi tristique senectus et netus 
 //-----------------------------------------------------
 
 // Update the comment
-$result = $api->downloads->updateDownloadComment($download_id, $comment_id, $new_comment_text);
+$result = $api->downloads->updateComment($download_id, $comment_id, $new_comment_text);
 
 if (!$result->isError()) {
 	// Comment updated sucessfully
