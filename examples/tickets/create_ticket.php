@@ -41,7 +41,7 @@ $isHtml = false;
 
 $ticket = $api->tickets->createBuilder();
 
-$person = $api->people->createPersonBuilder();
+$person = $api->people->createPersonEditor();
 
 $person->setName($person_name)
 		->setEmail($person_email)
