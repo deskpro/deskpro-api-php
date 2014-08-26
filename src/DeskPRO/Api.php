@@ -159,6 +159,9 @@ class Api
 		$this->setApiKey($api_key);
 		$this->setAgentId($agent_id);
 		$this->setApiToken($api_token);
+
+		// Do a get request to /, to make sure it's a valid DeskPRO url
+		$this->call('GET', '/');
 	}
 
 	/**
@@ -340,6 +343,11 @@ class Api
 
 		$response = curl_exec($curl);
 		curl_close($curl);
+
+		if (!$response) {
+			throw new Exception\CoreException('Invalid DeskPRO URL: ' . $url);
+			
+		}
 
 		do {
 			$header_end = strpos($response, "\r\n\r\n");
