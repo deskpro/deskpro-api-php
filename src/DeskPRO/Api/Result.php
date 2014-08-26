@@ -60,6 +60,9 @@ class Result implements \ArrayAccess, \IteratorAggregate
         505 => 'HTTP Version Not Supported',
         509 => 'Bandwidth Limit Exceeded'
     );
+    
+    /** @var header to look for checking valid DP Responses */
+    protected static $dp_header = 'x-deskpro-requestid';
 
     /**
      * HTTP response code
@@ -287,4 +290,12 @@ class Result implements \ArrayAccess, \IteratorAggregate
     public function offsetGet($k)     { return $this->get($k); }
     public function offsetSet($k, $v) { throw new \BadMethodCallException(); }
     public function offsetUnset($k)   { throw new \BadMethodCallException(); }
+
+    /**
+     * Checks whether the response is a valid DeskPRO Response
+     */
+    public function isValidDeskPROResponse()
+    {
+        return (bool) $this->getHeaders($this->dp_header);
+    }
 }

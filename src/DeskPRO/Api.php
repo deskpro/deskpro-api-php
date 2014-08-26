@@ -368,6 +368,11 @@ class Api
 
 		$results = new Api\Result($headers, $body);
 
+		if (!$results->isValidDeskPROResponse()) {
+			throw new Exception\CoreException('Not a valid DeskPRO response, Please check your $dp_root URL carefully');
+			
+		}
+
 		$this->_errors = false;
 		$this->_last = $results;
 
