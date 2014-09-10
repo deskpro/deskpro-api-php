@@ -25,13 +25,17 @@ $ticket_id	= 5;
 
 // Label to add
 $label = "Urgent";
+$label2 = "Dataabse-issue";
 
 //-----------------------------------------------------
 // EXAMPLE CODE
 //-----------------------------------------------------
 
-// Add ticket label
+// Add ticket label (note that to add multiple labels, make multiple calls as per below)
+// "," are not valid in labels and will be stripped
+
 $result = $api->tickets->addTicketLabel($ticket_id, $label);
+$result = $api->tickets->addTicketLabel($ticket_id, $label2);
 
 if (!$result->isError()) {
 	// Request completed successfully
