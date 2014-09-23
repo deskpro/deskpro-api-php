@@ -18,6 +18,19 @@ abstract class AbstractCriteria
 	}
 
 	/**
+	 * Add arbirary criteria.
+	 *
+	 * @param string $name
+	 * @param mixed $value
+	 * @return \DeskPRO\Criteria\AbstractCriteria
+	 */
+	public function addCriteria($name, $value)
+	{
+		$this->_criteria[$name] = $value;
+		return $this;
+	}
+
+	/**
 	 * Specifies the Page number of the result set to fetch
 	 *
 	 * @param int $page The page number to fetch
