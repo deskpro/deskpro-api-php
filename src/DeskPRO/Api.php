@@ -19,21 +19,6 @@ namespace DeskPRO;
  */
 
 /**
- * This is a class to make accessing the REST API exposed by DeskPRO easier.
- * It wraps various API calls in a simple to use PHP API.
- *
- * To use, simply create the object with the URL to your DeskPRO root and API key:
- *  $api = new DpApi('http://example.com/deskpro', '1:APIKEYHERE');
- *
- * Then call whatever API method you want:
- *  $results = $api->findTickets(array());
- *
- * API methods will return false on failure. getLastErrors() can be called to get
- * more specific error messages.
- *
- * For more information on the return values and available parameters in the DeskPRO
- * API, see here: https://support.deskpro.com/kb/17-deskpro-api
- *
  * @version 0.1.0
  */
 class Api
@@ -135,25 +120,16 @@ class Api
 			throw new Exception("cURL is not available. The DeskPRO API wrapper cannot be used.");
 		}
 		
-		$this->articles		= new Service\Articles($this);
-		
-		$this->chats		= new Service\Chats($this);
-
+		$this->articles     = new Service\Articles($this);
+		$this->chats        = new Service\Chats($this);
 		$this->downloads	= new Service\Downloads($this);
-		
 		$this->feedbacks	= new Service\Feedbacks($this);
-		
-		$this->misc		= new Service\Misc($this);
-
-		$this->news		= new Service\News($this);
-
-		$this->organization	= new Service\Organization($this);
-		
-		$this->people		= new Service\People($this);
-		
-		$this->tasks		= new Service\Tasks($this);
-		
-		$this->tickets		= new Service\Tickets($this);
+		$this->misc         = new Service\Misc($this);
+		$this->news         = new Service\News($this);
+		$this->organization = new Service\Organization($this);
+		$this->people       = new Service\People($this);
+		$this->tasks        = new Service\Tasks($this);
+		$this->tickets      = new Service\Tickets($this);
 
 		$this->setRoot($dp_root);
 		$this->setApiKey($api_key);
