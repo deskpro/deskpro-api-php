@@ -106,6 +106,11 @@ class Api
 	/** @var \DeskPRO\Service\Tickets Tickets service */
 	public $tickets;
 
+    /** @var \DeskPRO\Service\CustomFields Fields service */
+    public $custom_fields;
+
+
+
 	/**
 	 * @param string $dp_root
 	 * @param string $api_key Pre-created key from the admin interface
@@ -130,6 +135,7 @@ class Api
 		$this->people       = new Service\People($this);
 		$this->tasks        = new Service\Tasks($this);
 		$this->tickets      = new Service\Tickets($this);
+        $this->custom_fields= new Service\CustomFields($this);
 
 		$this->setRoot($dp_root);
 		$this->setApiKey($api_key);
