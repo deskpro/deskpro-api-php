@@ -216,12 +216,11 @@ class Tickets extends \DeskPRO\Service\AbstractService
 	 * @param bool $asAgent If true, the message is considered to be written by the API agent rather than the ticket owner. Defaults to false.
 	 * @param bool $isHtml If true, the message parameter is treated as HTML.
 	 * @param bool $muteNotification If true, suppresses user notification of the reply. Defaults to false.
+	 * @param array $params Additional parameters acepted by API.
 	 * @return \DeskPRO\Api\Result
 	 */
-	public function createMessage($ticketId, $message, $files = array(), $blobIds = array(), $isNote = false, $asAgent = false, $isHtml = false, $muteNotification = false)
+	public function createMessage($ticketId, $message, $files = array(), $blobIds = array(), $isNote = false, $asAgent = false, $isHtml = false, $muteNotification = false, array $params = array())
 	{
-		$params = array();
-
 		$params['message'] = $message;
 
 		if (count($files)) {
