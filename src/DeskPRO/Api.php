@@ -276,6 +276,7 @@ class Api
 		curl_setopt($curl, CURLOPT_HEADER, true);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $this->_verify_ssl);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
 		if ($this->_curl_init_callback) {
 			call_user_func($this->_curl_init_callback, $curl, $method, $end, $params);
@@ -295,10 +296,15 @@ class Api
 		}
 
 		switch ($method) {
-			case 'POST':
 			case 'PUT':
 			case 'DELETE':
 				curl_setopt($curl, CURLOPT_CUSTOMREQUEST, strtoupper($method));
+				curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
+				$headers[] = 'Content-Type: application/json';
+				break;
+
+			case 'POST':
+				curl_setopt($curl, CURLOPT_POST, true);
 				if ($has_files) {
 					$boundary = '---DPAPICURL-' . md5(microtime());
 					$raw_params = $this->_getCurlMultiPart($params, $boundary) . "--$boundary--\r\n";
