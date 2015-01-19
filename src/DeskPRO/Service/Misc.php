@@ -83,10 +83,11 @@ class Misc extends AbstractService
 	 * @param array $info Data to write to the category
 	 * @return \DeskPRO\Api\Result
 	 */
-	public function updateSnippetCategory($type, $id, $isGlobal = false)
+	public function updateSnippetCategory($type, $id, $isGlobal = false, $title = null)
 	{
 		$info = array(
-			'perm_type'	=> $isGlobal ? 'global' : ''
+			'perm_type'	=> $isGlobal ? 'global' : '',
+			'title' => $title,
 		);
 		
 		return $this->call('POST', '/text-snippets/' . $type . '/categories/' . intval($id), $info);
@@ -114,10 +115,16 @@ class Misc extends AbstractService
 	 * @param array $info The data to write to the snippet
 	 * @return \DeskPRO\Api\Result
 	 */
-	public function updateSnippet($type, $id, $categoryId)
+	public function updateSnippet($type, $id, $categoryId, $title = null, $snippet = null, $languageId = 1)
 	{
 		$info = array(
-			'category_id' => $categoryId
+			'category_id' => $categoryId,
+			'title' => array(
+				$languageId => $title,
+			),
+			'snippet' => array(
+				$languageId => $snippet,
+			),
 		);
 		
 		return $this->call('POST', '/text-snippets/' . $type . '/' . intval($id), $info);
