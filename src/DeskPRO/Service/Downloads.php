@@ -25,11 +25,11 @@ class Downloads extends AbstractService
 	/**
 	 * Creates and returns a DownloadsBuilder object
 	 * 
-	 * @return \DeskPRO\Builder\Downloads
+	 * @return \DeskPRO\Builder\Download
 	 */
 	public function createDownloadEditor()
 	{
-		return new \DeskPRO\Builder\Downloads();
+		return new \DeskPRO\Builder\Download();
 	}
 
 	/**
@@ -57,10 +57,10 @@ class Downloads extends AbstractService
 	/**
 	 * Saves a Downloads
 	 * 
-	 * @param \DeskPRO\Builder\Downloads $download
+	 * @param \DeskPRO\Builder\Download $download
 	 * @return \DeskPRO\Api\Result
 	 */
-	public function save(\DeskPRO\Builder\Downloads $download)
+	public function save(\DeskPRO\Builder\Download $download)
 	{
 		$info = $this->_enforceFileUploadIsset($download->getDataArray(), 'attach', true);
 
