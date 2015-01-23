@@ -73,14 +73,14 @@ class Download
 	}
 
 	/**
-	 * Adds a category
+	 * Set a category
 	 * 
 	 * @param int $categoryId ID of the category
 	 * @return \DeskPRO\Builder\Download
 	 */
-	public function addCategory($categoryId)
+	public function setCategory($categoryId)
 	{
-		$this->_dataArray['category_id'][] = $categoryId;
+		$this->_dataArray['category_id'] = (int) $categoryId;
 
 		return $this;
 	}

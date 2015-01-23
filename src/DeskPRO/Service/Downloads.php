@@ -40,7 +40,7 @@ class Downloads extends AbstractService
 	 */
 	public function find(\DeskPRO\Criteria\Downloads $criteria)
 	{
-		return $this->call('GET', '/download', $criteria->toArray());
+		return $this->call('GET', '/downloads', $criteria->toArray());
 	}
 
 	/**
@@ -67,7 +67,7 @@ class Downloads extends AbstractService
 		if ($download->getId()) {
 			return $this->call('POST', '/downloads/' . intval($download->getId()), $info);
 		}
-		return $this->call('POST', '/download', $info);
+		return $this->call('POST', '/downloads', $info);
 	}
 
 	/**
