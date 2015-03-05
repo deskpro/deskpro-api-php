@@ -34,10 +34,10 @@ $new_title	= 'Importer for V5 [Supports legacy versions]';
 $download = $api->downloads->createDownloadEditor();
 
 // Set the download ID
-$builder->setId($download_id);
+$download->setId($download_id);
 
 // Set the new title
-$builder->setTitle($new_title);
+$download->setTitle($new_title);
 
 // Save the download to persist the changes
 $result = $api->downloads->save($download);			

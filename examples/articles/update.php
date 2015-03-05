@@ -33,10 +33,10 @@ $new_title	= 'Updating your PHP Version [Updated with PHP 5.5]';
 $article = $api->articles->createArticleEditor();
 
 // Set the article ID
-$builder->setId($article_id);
+$article->setId($article_id);
 
 // Set the new title
-$builder->setTitle($new_title);
+$article->setTitle($new_title);
 
 // Save the article to persist the changes
 $result = $api->articles->save($article);			
