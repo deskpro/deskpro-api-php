@@ -21,7 +21,15 @@ $api = new \DeskPRO\Api($deskpro_url, $api_key);
 //-----------------------------------------------------
 
 // Session code for the person
+
+/*
+ * Set it manually or you could get the session code right from the DeskPRO cookie.
+ * You might need to set the cookie domain to ".example.com" (leading dot) to make it 
+ * accessible to sub-domains. You can set that from Admin > Server > Settings.
+ */
+
 $session_code	= 'SESSION_CODE';
+// $session_code = $_COOKIE['dpsid-agent'];
 
 //-----------------------------------------------------
 // EXAMPLE CODE
