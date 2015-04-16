@@ -122,7 +122,7 @@ class Api
 	public function __construct($dp_root, $api_key = null, $agent_id = 0, $api_token = null)
 	{
 		if (!function_exists('curl_init')) {
-			throw new Exception("cURL is not available. The DeskPRO API wrapper cannot be used.");
+			throw new Exception\CoreException("cURL is not available. The DeskPRO API wrapper cannot be used.");
 		}
 		
 		$this->articles     = new Service\Articles($this);
@@ -319,7 +319,7 @@ class Api
 
 			case 'GET':
 				if ($has_files) {
-					throw new Exception('Cannot upload files when sending a GET request.');
+					throw new Exception\CoreException('Cannot upload files when sending a GET request.');
 				}
 
 				curl_setopt($curl, CURLOPT_HTTPGET, true);
