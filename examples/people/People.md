@@ -17,9 +17,11 @@ Create a new person
 
     $newUser->setName("User5 with a Password")
         ->setEmail("anotheruser6@test.com")
+        ->setOrganizationById($id)
         ->setPassword('password');
 
     $result = $api->people->save($newUser);
+    
 
 Get information about a person
 ------------------------------
