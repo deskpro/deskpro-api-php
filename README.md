@@ -26,8 +26,6 @@ Full documentation on the underlying API is maintained in the [API documentation
 
 Note that you can explore the API interactively on your own helpdesk using the [DeskPRO API browser](https://support.deskpro.com/kb/articles/346).
 
-Specific PHP SDK documentation can be found [here](https://support.deskpro.com/kb/articles/97-deskpro-api-wrapper-php).
-
 
 
 Quick Start
