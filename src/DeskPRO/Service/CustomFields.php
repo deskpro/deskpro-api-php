@@ -7,8 +7,20 @@ namespace DeskPRO\Service;
  */
 class CustomFields extends AbstractService
 {
+	const TYPE_BILLING = 'billing';
+    const TYPE_TICKET = 'ticket';
+    const TYPE_PERSON = 'person';
+    const TYPE_ORG = 'org';
+
+    protected $allowed = array(
+        self::TYPE_BILLING => 1,
+        self::TYPE_TICKET => 1,
+        self::TYPE_PERSON => 1,
+        self::TYPE_ORG => 1,
+    );
+
 	/**
-	 * Gets all custom fields.
+	 * Gets all contextual custom fields.
 	 *
 	 * @param null $owner
 	 * @param null $context
@@ -20,8 +32,8 @@ class CustomFields extends AbstractService
 	}
 
 	/**
-	 * Gets a Field by ID
-	 * 
+	 * Gets a contextual Field by ID
+	 *
 	 * @param int $id
 	 * @return \DeskPRO\Api\Result
 	 */
@@ -31,8 +43,8 @@ class CustomFields extends AbstractService
 	}
 
 	/**
-	 * Deletes a Field by ID
-	 * 
+	 * Deletes a contextual Field by ID
+	 *
 	 * @param int $id ID of the Custom Field
 	 * @return \DeskPRO\Api\Result
 	 */
@@ -42,7 +54,7 @@ class CustomFields extends AbstractService
 	}
 
 	/**
-	 * Gets custom field choices.
+	 * Gets contextual custom field choices.
 	 *
 	 * @param int $id Custom Field ID
 	 * @param null $context
@@ -83,4 +95,39 @@ class CustomFields extends AbstractService
 			'display_order' => $display_order,
 		));
 	}
+
+    /**
+     * @param $type
+     * @param $objectId
+     * @return DpApiResult
+     * @throws \Exception
+     */
+    public function getCustomFieldsForObject($type, $objectId)
+    {
+        if (!isset($this->allowed[$type])) {
+            throw new \Exception('Invalid custom field type');
+        }
+
+        return $this->call('GET', sprintf('/custom_fields/%s/%d', $type, $objectId));
+    }
+
+    /**
+     * @param $type
+     * @param $objectId
+     * @param $fieldId
+     * @param $value
+     * @return DpApiResult
+     * @throws \Exception
+     */
+    public function setCustomFieldForObject($type, $objectId, $fieldId, $value)
+    {
+        if (!isset($this->allowed[$type])) {
+            throw new \Exception('Invalid custom field type');
+        }
+
+        return $this->call('POST', sprintf('/custom_fields/%s/%d', $type, $objectId), array(
+            'id' => $fieldId,
+            'value' => $value,
+        ));
+    }
 }

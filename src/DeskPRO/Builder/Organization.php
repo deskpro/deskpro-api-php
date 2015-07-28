@@ -47,7 +47,7 @@ class Organization
 
 	/**
 	 * Sets the Organization's name
-	 * 
+	 *
 	 * @param string $name Name to set
 	 * @return \DeskPRO\Builder\Organization
 	 */
@@ -60,7 +60,7 @@ class Organization
 
 	/**
 	 * Sets the contact data
-	 * 
+	 *
 	 * @param \DeskPRO\Builder\ContactData $contactData the contact data
 	 * @return \DeskPRO\Builder\Organization
 	 */
@@ -73,7 +73,7 @@ class Organization
 
 	/**
 	 * Sets a custom field
-	 * 
+	 *
 	 * @param string $key The custom field key
 	 * @param mixed $value The custom field value
 	 * @return \DeskPRO\Builder\Organization
@@ -87,39 +87,39 @@ class Organization
 
 	/**
 	 * Adds the Organization to an UserGroup
-	 * 
+	 *
 	 * @param int $groupId The UserGroup ID to the add the user to
 	 * @return \DeskPRO\Builder\Organization
 	 */
 	public function addToGroup($groupId)
 	{
-		@$this->_dataArray['group_id'][] = $groupId;
+		$this->_dataArray['group_id'][] = $groupId;
 
 		return $this;
 	}
 
 	/**
 	 * Adds a label
-	 * 
+	 *
 	 * @param string $label The label to add
 	 * @return \DeskPRO\Builder\Organization
 	 */
 	public function addLabel($label)
 	{
-		@$this->_dataArray['label'][] = $label;
+		$this->_dataArray['label'][] = $label;
 
 		return $this;
 	}
 
 	/**
 	 * Sets the summary
-	 * 
+	 *
 	 * @param string $summary The summary to set
 	 * @return \DeskPRO\Builder\Organization
 	 */
 	public function setSummary($summary)
 	{
-		@$this->_dataArray['summary'] = $summary;
+		$this->_dataArray['summary'] = $summary;
 
 		return $this;
 	}
