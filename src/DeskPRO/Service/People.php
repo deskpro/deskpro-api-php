@@ -550,4 +550,15 @@ class People extends AbstractService
 		return $this->call('GET', '/people/groups');
 	}
 
+	/**
+         * Gets a login token that can be used in a web request to log a user in.
+	 *
+	 * @param int $personId The Person's ID
+	 * @return \DeskPRO\Api\Result
+	 */
+	public function getLoginToken($personId)
+	{
+		return $this->call('GET', '/people/' . intval($personId) . '/login-token');
+	}
+	 
 }
