@@ -34,10 +34,10 @@ $new_title	= 'Feedback updated via API';
 $feedback = $api->feedbacks->createFeedbackEditor();
 
 // Set the feedback ID
-$builder->setId($feedback_id);
+$feedback->setId($feedback_id);
 
 // Set the new title
-$builder->setTitle($new_title);
+$feedback->setTitle($new_title);
 
 // Save the feedback to persist the changes
 $result = $api->feedbacks->save($feedback);			
