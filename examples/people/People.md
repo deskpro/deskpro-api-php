@@ -240,3 +240,7 @@ Gets a list of available user groups.
 
     $result = $api->people->getGroups();
 
+Gets a login token that can be used in a web request to log a user in.
+----------------------------------
+
+    $result = $api->people->getLoginToken($personId);
