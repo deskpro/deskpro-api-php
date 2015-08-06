@@ -186,7 +186,7 @@ class Person
 	 * @param mixed $value The custom field value
 	 * @return \DeskPRO\Person
 	 */
-	public function addCustomFiled($key, $value)
+	public function addCustomField($key, $value)
 	{
 		@$this->_dataArray['field'][$key] = $value;
 
