@@ -127,16 +127,15 @@ class Api
 		
 		$this->articles     = new Service\Articles($this);
 		$this->chats        = new Service\Chats($this);
-		$this->downloads	= new Service\Downloads($this);
-		$this->feedbacks	= new Service\Feedbacks($this);
+		$this->downloads    = new Service\Downloads($this);
+		$this->feedbacks    = new Service\Feedbacks($this);
 		$this->misc         = new Service\Misc($this);
 		$this->news         = new Service\News($this);
 		$this->organization = new Service\Organization($this);
 		$this->people       = new Service\People($this);
 		$this->tasks        = new Service\Tasks($this);
 		$this->tickets      = new Service\Tickets($this);
-        $this->custom_fields= new Service\CustomFields($this);
-
+                $this->custom_fields= new Service\CustomFields($this);
 		$this->setRoot($dp_root);
 		$this->setApiKey($api_key);
 		$this->setAgentId($agent_id);
