@@ -213,7 +213,7 @@ class Ticket
 	 */
 	public function addCustomField($key, $value)
 	{
-		$this->_dataArray[$key] = $value;
+		@$this->_dataArray['field'][$key] = $value;
 
 		return $this;
 	}
