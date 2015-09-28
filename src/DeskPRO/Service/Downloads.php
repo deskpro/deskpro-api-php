@@ -14,17 +14,17 @@ class Downloads extends AbstractService
 
 	/**
 	 * Creates and returns a search criteria
-	 * 
-	 * @return \DeskPRO\Criteria\Downloads
+	 *
+	 * @return \DeskPRO\Criteria\Download
 	 */
 	public function createCriteria()
 	{
-		return new \DeskPRO\Criteria\Downloads();
+		return new \DeskPRO\Criteria\Download();
 	}
 
 	/**
 	 * Creates and returns a DownloadsBuilder object
-	 * 
+	 *
 	 * @return \DeskPRO\Builder\Download
 	 */
 	public function createDownloadEditor()
@@ -34,18 +34,18 @@ class Downloads extends AbstractService
 
 	/**
 	 * Finds tasks matching the criteria
-	 * 
-	 * @param \DeskPRO\Criteria\Downloads $criteria
+	 *
+	 * @param \DeskPRO\Criteria\Download $criteria
 	 * @return \DeskPRO\Api\Result
 	 */
-	public function find(\DeskPRO\Criteria\Downloads $criteria)
+	public function find(\DeskPRO\Criteria\Download $criteria)
 	{
 		return $this->call('GET', '/downloads', $criteria->toArray());
 	}
 
 	/**
 	 * Gets a Downloads by ID
-	 * 
+	 *
 	 * @param int $downloadId
 	 * @return \DeskPRO\Api\Result
 	 */
@@ -56,7 +56,7 @@ class Downloads extends AbstractService
 
 	/**
 	 * Saves a Downloads
-	 * 
+	 *
 	 * @param \DeskPRO\Builder\Download $download
 	 * @return \DeskPRO\Api\Result
 	 */
@@ -72,7 +72,7 @@ class Downloads extends AbstractService
 
 	/**
 	 * Deletes a download by ID
-	 * 
+	 *
 	 * @param int $downloadId ID of the download to be deleted
 	 * @return \DeskPRO\Api\Result
 	 */
@@ -83,7 +83,7 @@ class Downloads extends AbstractService
 
 	/**
 	 * Gets all comments on a download entry.
-	 * 
+	 *
 	 * @param int $downloadId ID of the download to search for comments
 	 * @return \DeskPRO\Api\Result
 	 */
@@ -94,7 +94,7 @@ class Downloads extends AbstractService
 
 	/**
 	 * Add a comment for a download entry
-	 * 
+	 *
 	 * @param int $downloadId ID of the download entry
 	 * @param string $content Text of the comment.
 	 * @param int $personId ID of the person that owns the comment. If not provided, defaults to the agent making the request.
@@ -114,7 +114,7 @@ class Downloads extends AbstractService
 
 	/**
 	 * Gets info about a specific download comment
-	 * 
+	 *
 	 * @param int $downloadId ID of the download
 	 * @param int $commentId ID of the comment
 	 * @return \DeskPRO\Api\Result
@@ -126,7 +126,7 @@ class Downloads extends AbstractService
 
 	/**
 	 * Updates a comment
-	 * 
+	 *
 	 * @param int $downloadId ID of the download entry
 	 * @param int $commentId Comment ID
 	 * @param string $content new content
@@ -145,7 +145,7 @@ class Downloads extends AbstractService
 
 	/**
 	 * Deletes a download comment
-	 * 
+	 *
 	 * @param int $downloadId Downloads ID
 	 * @param int $commentId Comment ID that needs to be deleted
 	 * @return \DeskPRO\Api\Result
