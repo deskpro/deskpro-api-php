@@ -312,7 +312,8 @@ class Api
 					$headers[] = 'Content-Type: multipart/form-data; boundary=' . $boundary;
 					$headers[] = 'Content-Length: ' . strlen($raw_params);
 				} else {
-					curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($params));
+					curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));
+					$headers[] = 'Content-Type: application/json';
 				}
 				break;
 

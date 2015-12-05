@@ -31,7 +31,7 @@ $word_definitation 	= 'A valid subscription means ...';
 //-----------------------------------------------------
 
 // Add Word
-$result = $api->articles->addWord(array($word), $word_definitation)
+$result = $api->articles->addWord(array($word), $word_definitation);
 
 if (!$result->isError()) {
 	// Request completed successfully
