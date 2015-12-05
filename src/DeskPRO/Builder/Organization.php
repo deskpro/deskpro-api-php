@@ -124,4 +124,10 @@ class Organization
 		return $this;
 	}
 
+	public function setParentId($parentId)
+	{
+		$this->_dataArray['parent_id'] = (int) $parentId;
+
+		return $this;
+	}
 }
