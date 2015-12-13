@@ -5,7 +5,7 @@ namespace DeskPRO\Service;
 /**
  * The People Service
  * Handles people related operations
- * 
+ *
  * @link https://support.deskpro.com/kb/articles/90-people Official Documentation
  * @author Abhinav Kumar <abhinav.kumar@deskpro.com>
  */
@@ -24,7 +24,7 @@ class People extends AbstractService
 
 	/**
 	 * Creates and returns a search criteria
-	 * 
+	 *
 	 * @return \DeskPRO\Criteria\People
 	 */
 	public function createCriteria()
@@ -34,7 +34,7 @@ class People extends AbstractService
 
 	/**
 	 * Search for people matching criteria
-	 * 
+	 *
 	 * @param \DeskPRO\Criteria $criteria
 	 * @return \DeskPRO\Api\Result Result Object
 	 */
@@ -45,7 +45,7 @@ class People extends AbstractService
 
 	/**
 	 * Finds a Person by ID
-	 * 
+	 *
 	 * @param int $personId Person's ID to search
 	 * @return \DeskPRO\Api\Result
 	 */
@@ -67,7 +67,7 @@ class People extends AbstractService
 
 	/**
 	 * Saves a Person
-	 * 
+	 *
 	 * @param \DeskPRO\Builder\Person $person
 	 * @return \DeskPRO\Api\Result
 	 * @throws \Exception if required parameters are missing
@@ -217,7 +217,7 @@ class People extends AbstractService
 
 	/**
 	 * Adds an email for a person.
-	 * 
+	 *
 	 * @param int $personId
 	 * @param string $email
 	 * @param string $comment
@@ -277,6 +277,78 @@ class People extends AbstractService
 	public function deleteEmail($personId, $emailId)
 	{
 		return $this->call('DELETE', '/people/' . intval($personId) . '/emails/' . intval($emailId));
+	}
+
+	/**
+	 * Gets all phone numbers for a person.
+	 *
+	 * @param int $personId
+	 *
+	 * @return \DeskPRO\Api\Result
+	 */
+	public function getPhoneNumbers($personId)
+	{
+		return $this->call('GET', '/people/' . intval($personId) . '/phone_numbers');
+	}
+
+	/**
+	 * Adds a phone number for a person.
+	 *
+	 * @param int $personId
+	 * @param string $phone_number The number, stored in E.164 string format, ie. +19021111111
+	 * @param string $label
+	 * @return \DeskPRO\Api\Result
+	 */
+	public function addPhoneNumber($personId, $phone_number, $label = null)
+	{
+		$params = array(
+			'phone_number' => $phone_number,
+			'label' => $label,
+		);
+
+		return $this->call('POST', '/people/' . intval($personId) . '/phone_numbers', $params);
+	}
+
+	/**
+	 * Gets information about a particular phone number ID for a person.
+	 *
+	 * @param int $personId
+	 * @param int $phoneNumberId
+	 *
+	 * @return \DeskPRO\Api\Result
+	 */
+	public function getPhoneNumber($personId, $phoneNumberId)
+	{
+		return $this->call('GET', '/people/' . intval($personId) . '/phone_numbers/' . intval($phoneNumberId));
+	}
+
+	/**
+	 * Updates a particular phone number ID for a person.
+	 *
+	 * @param int $personId The Persons's ID
+	 * @param int $phoneNumberId The EmailID to update
+	 * @param string $comment Email comment
+	 *
+	 * @return \DeskPRO\Api\Result
+	 */
+	public function updatePhoneNumber($personId, $phoneNumberId, $label = null)
+	{
+		return $this->call('POST', '/people/' . intval($personId) . '/phone_numbers/' . intval($phoneNumberId), array(
+			'label' => $label
+		));
+	}
+
+	/**
+	 * Deletes a particular phone number ID for a person.
+	 *
+	 * @param int $personId
+	 * @param int $phoneNumberId
+	 *
+	 * @return \DeskPRO\Api\Result
+	 */
+	public function deletePhoneNumber($personId, $phoneNumberId)
+	{
+		return $this->call('DELETE', '/people/' . intval($personId) . '/phone_numbers/' . intval($phoneNumberId));
 	}
 
 	/**
@@ -560,5 +632,5 @@ class People extends AbstractService
 	{
 		return $this->call('GET', '/people/' . intval($personId) . '/login-token');
 	}
-	 
+
 }
