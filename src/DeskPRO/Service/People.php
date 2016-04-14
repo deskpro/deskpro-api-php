@@ -204,18 +204,6 @@ class People extends AbstractService
 	}
 
 	/**
-	 * Get personId by email.
-	 *
-	 * @param string $mail
-	 *
-	 * @return \DeskPRO\Api\Result
-	 */
-	public function getPersonId($mail)
-	{
-		return $this->call('GET', '/people/' . $mail . '/person_id');
-	}
-
-	/**
 	 * Gets all emails for a person.
 	 *
 	 * @param int $personId
