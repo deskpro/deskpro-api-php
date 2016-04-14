@@ -188,7 +188,7 @@ class Person
 	 */
 	public function addCustomField($key, $value)
 	{
-		@$this->_dataArray['field'][$key] = $value;
+		@$this->_dataArray[$key] = $value;
 
 		return $this;
 	}
@@ -201,7 +201,7 @@ class Person
 	 */
 	public function addToUserGroup($userGroupId)
 	{
-		@$this->_dataArray['group_id'][] = $userGroupId;
+		@$this->_dataArray['group_id'] = $userGroupId;
 
 		return $this;
 	}
@@ -215,7 +215,7 @@ class Person
 	public function addLabel($label)
 	{
 		if (!empty($label)) {
-			@$this->_dataArray['label'][] = $label;
+			@$this->_dataArray['label'] = $label;
 		}
 
 		return $this;

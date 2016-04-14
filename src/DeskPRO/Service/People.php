@@ -178,8 +178,8 @@ class People extends AbstractService
 	 */
 	public function setPersonPicture($personId, $file = null, $blobId = null)
 	{
-		if ($blob_id) {
-			$params = array('blob_id' => $blob_id);
+		if ($blobId) {
+			$params = array('blob_id' => $blobId);
 		} else if ($file) {
 			$params = array('file' => $file);
 		} else {
@@ -201,6 +201,18 @@ class People extends AbstractService
 	public function deletePicture($personId)
 	{
 		return $this->call('DELETE', '/people/' . intval($personId) . '/picture');
+	}
+
+	/**
+	 * Get personId by email.
+	 *
+	 * @param string $mail
+	 *
+	 * @return \DeskPRO\Api\Result
+	 */
+	public function getPersonId($mail)
+	{
+		return $this->call('GET', '/people/' . $mail . '/person_id');
 	}
 
 	/**
@@ -232,7 +244,7 @@ class People extends AbstractService
 			'set_primary' => $setPrimary
 		);
 
-		return $this->call('POST', '/people/' . intval($id) . '/emails', $params);
+		return $this->call('POST', '/people/' . intval($personId) . '/emails', $params);
 	}
 
 	/**
