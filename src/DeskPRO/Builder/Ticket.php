@@ -37,7 +37,7 @@ class Ticket
 	 * Sets the Task's ID
 	 *
 	 * @param int $id The ID to set
-	 * @return \DeskPRO\Builder\Task
+	 * @return \DeskPRO\Builder\Ticket
 	 */
 	public function setId($id)
 	{
