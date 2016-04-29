@@ -96,7 +96,7 @@ class Person
 	 * Sets the person's name
 	 *
 	 * @param string $name The name to set
-	 * @return \DeskPRO\Person
+	 * @return \DeskPRO\Builder\Person
 	 */
 	public function setName($name)
 	{
@@ -112,7 +112,7 @@ class Person
 	 *
 	 * @param string $email The email to set
 	 * @throws \Exception if $email is not valid
-	 * @return \DeskPRO\Person
+	 * @return \DeskPRO\Builder\Person
 	 */
 	public function setEmail($email)
 	{
@@ -129,7 +129,7 @@ class Person
 	 * Sets a Person's password
 	 *
 	 * @param string $password The Password to set
-	 * @return \DeskPRO\Person
+	 * @return \DeskPRO\Builder\Person
 	 */
 	public function setPassword($password)
 	{
@@ -146,7 +146,7 @@ class Person
 	 * @param string $type The type of contact data to add
 	 * @param array $data The contact data array
 	 * @param string $comment Any additional comment (optional)
-	 * @return \DeskPRO\Person
+	 * @return \DeskPRO\Builder\Person
 	 */
 	public function addContactData(ContactData $contactData)
 	{
@@ -158,7 +158,7 @@ class Person
 	/**
 	 * Disables Auto Responses for this Person
 	 *
-	 * @return \DeskPRO\Person
+	 * @return \DeskPRO\Builder\Person
 	 */
 	public function disableAutoResponses()
 	{
@@ -170,7 +170,7 @@ class Person
 	/**
 	 * Enables Auto Responses for this Person
 	 *
-	 * @return \DeskPRO\Person
+	 * @return \DeskPRO\Builder\Person
 	 */
 	public function enableAutoResponses()
 	{
@@ -184,7 +184,7 @@ class Person
 	 *
 	 * @param string $key The custom field key|name
 	 * @param mixed $value The custom field value
-	 * @return \DeskPRO\Person
+	 * @return \DeskPRO\Builder\Person
 	 */
 	public function addCustomField($key, $value)
 	{
@@ -197,7 +197,7 @@ class Person
 	 * Adds the Person to a User Group
 	 *
 	 * @param int $userGroupId The UserGroup ID to add the person to
-	 * @return \DeskPRO\Person
+	 * @return \DeskPRO\Builder\Person
 	 */
 	public function addToUserGroup($userGroupId)
 	{
@@ -210,7 +210,7 @@ class Person
 	 * Adds a label the Person
 	 *
 	 * @param string $label The label to add
-	 * @return \DeskPRO\Person
+	 * @return \DeskPRO\Builder\Person
 	 */
 	public function addLabel($label)
 	{
@@ -224,7 +224,7 @@ class Person
 	/**
 	 * Disables a Person
 	 *
-	 * @return \DeskPRO\Person
+	 * @return \DeskPRO\Builder\Person
 	 */
 	public function disable()
 	{
@@ -236,7 +236,7 @@ class Person
 	/**
 	 * Enables a Person
 	 *
-	 * @return \DeskPRO\Person
+	 * @return \DeskPRO\Builder\Person
 	 */
 	public function enable()
 	{
@@ -249,7 +249,7 @@ class Person
 	 * Sets a Person's organization by name
 	 *
 	 * @param string $organizationName Name of the organization to add
-	 * @return \DeskPRO\Person
+	 * @return \DeskPRO\Builder\Person
 	 */
 	public function setOrganizationByName($organizationName)
 	{
@@ -262,7 +262,7 @@ class Person
 	 * Sets a Person's organization by organization ID
 	 *
 	 * @param int $organizationId ID of the organization to add
-	 * @return \DeskPRO\Person
+	 * @return \DeskPRO\Builder\Person
 	 */
 	public function setOrganizationById($organizationId)
 	{
@@ -275,7 +275,7 @@ class Person
 	 * Sets a Person's position in their organization
 	 *
 	 * @param string $position Position to add to the Person
-	 * @return \DeskPRO\Person
+	 * @return \DeskPRO\Builder\Person
 	 */
 	public function setOrganizationPosition($position)
 	{
@@ -288,7 +288,7 @@ class Person
 	 * Sets the person's summary
 	 *
 	 * @param string $summary Summary to add
-	 * @return \DeskPRO\Person
+	 * @return \DeskPRO\Builder\Person
 	 */
 	public function setSummary($summary)
 	{
@@ -301,7 +301,7 @@ class Person
 	 * Sets the timezone for the Person
 	 *
 	 * @param string $timezone Olson time zone string identifier.
-	 * @return \DeskPRO\Person
+	 * @return \DeskPRO\Builder\Person
 	 */
 	public function setTimeZone($timezone)
 	{
@@ -313,7 +313,7 @@ class Person
 	/**
 	 * Marks the user to be sent an email upon creation
 	 *
-	 * @return \DeskPRO\Person
+	 * @return \DeskPRO\Builder\Person
 	 */
 	public function sendMail()
 	{
