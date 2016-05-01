@@ -97,13 +97,15 @@ class Ticket
 	 * @param bool $isHtml If true, the message parameter is treated as HTML.
 	 * @return \DeskPRO\Builder\Ticket
 	 */
-	public function setMessage($message, $isHtml = false, $asAgent = false)
+	public function setMessage($message, $isHtml = false, $asAgent = false, $isNote = false)
 	{
 		$this->_dataArray['message'] = $message;
 
 		$this->_dataArray['message_as_agent'] = $asAgent ? 1 : 0;
 
 		$this->_dataArray['message_is_html'] = $isHtml ? 1 : 0;
+		
+		$this->_dataArray['is_note'] = $isNote ? 1 : 0;
 
 		return $this;
 	}
