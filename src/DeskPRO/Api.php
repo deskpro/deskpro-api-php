@@ -23,6 +23,7 @@ namespace DeskPRO;
  */
 class Api
 {
+	protected $curl;
 
 	/**
 	 * URL to DeskPRO root (eg, http://example.com/deskpro)
@@ -75,34 +76,34 @@ class Api
 	 * @var callable
 	 */
 	protected $_curl_init_callback;
-	
+
 	/** @var \DeskPRO\Service\Articles Articles Service */
 	public $articles;
-	
+
 	/** @var \DeskPRO\Service\Chats Chats Service */
 	public $chats;
-	
+
 	/** @var \DeskPRO\Service\Downloads Downloads Service */
 	public $downloads;
-	
+
 	/** @var \DeskPRO\Service\Feedbacks Feedbck Service */
 	public $feedbacks;
-	
+
 	/** @var \DeskPRO\Service\Misc Misc API Service */
 	public $misc;
-	
+
 	/** @var \DeskPRO\Service\News News Service */
 	public $news;
-	
+
 	/** @var \DeskPRO\Service\Organization Organization Service */
 	public $organization;
-	
+
 	/** @var \DeskPRO\Service\People The people service */
 	public $people;
 
 	/** @var \DeskPRO\Service\Tasks The tasks service */
 	public $tasks;
-	
+
 	/** @var \DeskPRO\Service\Tickets Tickets service */
 	public $tickets;
 
@@ -124,7 +125,7 @@ class Api
 		if (!function_exists('curl_init')) {
 			throw new Exception\CoreException("cURL is not available. The DeskPRO API wrapper cannot be used.");
 		}
-		
+
 		$this->articles     = new Service\Articles($this);
 		$this->chats        = new Service\Chats($this);
 		$this->downloads    = new Service\Downloads($this);
@@ -270,10 +271,15 @@ class Api
 		$method = strtoupper($method);
 		$has_files = $this->_hasFileUploads($params);
 
-		$curl = curl_init($url);
+		if (!is_resource($this->curl)) {
+			$this->curl = curl_init();
+		}
+
+		$curl = $this->curl;
+
+		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, false);
 		curl_setopt($curl, CURLOPT_HEADER, true);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $this->_verify_ssl);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 
@@ -326,15 +332,11 @@ class Api
 				$url .= '?' . http_build_query($params);
 				curl_setopt($curl, CURLOPT_URL, $url);
 		}
-		
 		curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-
 		$response = curl_exec($curl);
-		curl_close($curl);
 
 		if (!$response) {
 			throw new Exception\CoreException('Invalid DeskPRO URL: ' . $url);
-			
 		}
 
 		do {
@@ -358,7 +360,7 @@ class Api
 
 		if (!$results->isValidDeskPROResponse()) {
 			throw new Exception\CoreException('Not a valid DeskPRO response, Please check your $dp_root URL carefully');
-			
+
 		}
 
 		$this->_errors = false;
