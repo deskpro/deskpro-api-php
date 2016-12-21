@@ -231,7 +231,7 @@ class Tickets extends \DeskPRO\Service\AbstractService
 
 		if (count($blobIds)) {
 			foreach ($blobIds as $blobId) {
-				$params['attachId'][] = $blobId;
+				$params['attach_id'][] = $blobId;
 			}
 		}
 
