@@ -163,18 +163,18 @@ class Ticket
 	 */
 	public function attachMultiple($file = null, $blobId = null)
 	{
-    if(!isset($this->_dataArray['attach'])) {
-      $this->_dataArray['attach'] = array();
-    }
+        if(!isset($this->_dataArray['attach'])) {
+          $this->_dataArray['attach'] = array();
+        }
 
-    if(!isset($this->_dataArray['attach'])) {
-      $this->_dataArray['attach_id'] = array();
-    }
+        if(!isset($this->_dataArray['attach_id'])) {
+          $this->_dataArray['attach_id'] = array();
+        }
 
 		if ($file) {
-			@$this->_dataArray['attach'] []= $file;
+			$this->_dataArray['attach'] = array_merge($this->_dataArray['attach'], (array)$file);
 		} elseif ($blobId) {
-			@$this->_dataArray['attach_id'][] = $blobId;
+			$this->_dataArray['attach_id'] = array_merge($this->_dataArray['attach_id'], (array)$blobId);
 		}
 
 		return $this;
