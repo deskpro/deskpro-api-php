@@ -36,7 +36,7 @@ $blob_ids			= array('2, 4, 6');
 $is_note			= FALSE;
 
 // If true, the message is considered to be written by the API agent rather than the ticket owner. Defaults to false.
-$as_agen			= FALSE;
+$as_agent			= FALSE;
 
 // If true, the message parameter is treated as HTML.
 $is_html			= FALSE;
