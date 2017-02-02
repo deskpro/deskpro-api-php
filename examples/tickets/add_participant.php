@@ -24,7 +24,7 @@ $api = new \DeskPRO\Api($deskpro_url, $api_key);
 $ticket_id	= 5;
 
 // ID of the person to add to the ticket
-$person_i	= 9;
+$person_id	= 9;
 
 // Email address of the person to add to the ticket. If no person can be found with this email, one will be created.
 $email		= 'newemail@domain.com';
