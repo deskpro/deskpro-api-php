@@ -1,5 +1,5 @@
 {
-    "name": "deskpro/deskpro-api-php",
+    "name": "gamenet/deskpro-api-php",
     "type": "library",
     "description": "Library for using the DeskPRO API with PHP",
     "license": "Apache",
