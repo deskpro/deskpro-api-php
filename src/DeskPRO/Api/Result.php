@@ -61,8 +61,12 @@ class Result implements \ArrayAccess, \IteratorAggregate
         509 => 'Bandwidth Limit Exceeded'
     );
     
-    /** @var header to look for checking valid DP Responses */
-    protected static $dp_header = 'x-deskpro-requestid';
+    /**
+     * Header to look for checking valid DP Responses.
+     *
+     * @var string
+     */
+    protected static $dp_header = 'x-request-id';
 
     /**
      * HTTP response code
@@ -296,6 +300,6 @@ class Result implements \ArrayAccess, \IteratorAggregate
      */
     public function isValidDeskPROResponse()
     {
-        return (bool) $this->getHeaders($this->dp_header);
+        return (bool) $this->getHeaders(self::$dp_header);
     }
 }
