@@ -232,7 +232,7 @@ class People extends AbstractService
 			'set_primary' => $setPrimary
 		);
 
-		return $this->call('POST', '/people/' . intval($id) . '/emails', $params);
+		return $this->call('POST', '/people/' . intval($personId) . '/emails', $params);
 	}
 
 	/**
