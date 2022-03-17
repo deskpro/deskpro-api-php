@@ -30,10 +30,10 @@ class Organization extends AbstractService
 	/**
 	 * Search for organization matching criteria
 	 * 
-	 * @param \DeskPRO\Criteria $criteria
+	 * @param \DeskPRO\Criteria\Organization $criteria
 	 * @return \DeskPRO\Api\Result Result Object
 	 */
-	public function find(\DeskPRO\Criteria $criteria)
+	public function find(\DeskPRO\Criteria\Organization $criteria)
 	{
 		return $this->call('GET', '/organizations', $criteria->toArray());
 	}
